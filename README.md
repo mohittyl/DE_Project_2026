@@ -20,11 +20,13 @@
 
 ## Team details (fill in before you start)
 
-Role	Name	Enrollment No.	GitHub Username
-Group Lead	Mohit	2501010716	mohittyl
-Member 2	Parv Narang	2501010329	ParvNarang20
-Member 3	Akash Mukherjee	2501010043	Akash10053218
-Member 4	Keshav Goel	2501010720	kshv-gl
+| Role | Name | Enrollment No. | GitHub Username |
+|------|------|----------------|-----------------|
+| Group Lead | Mohit | 2501010716 | mohittyl |
+| Member 2 | Parv Narang | 2501010329 | ParvNarang20 |
+| Member 3 | Akash Mukherjee | 2501010043 | Akash10053218 |
+| Member 4 | Keshav Goel | 2501010720 | kshv-gl |
+
 
 **Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
 
