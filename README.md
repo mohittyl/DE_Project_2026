@@ -28,7 +28,7 @@
 | Member 4 | Keshav Goel | 2501010720 | kshv-gl |
 
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** _T0057___ · **Section:** __A__ · **Repository URL:** ___https://github.com/mohittyl/DE_Project_2026.git_
 
 ---
 
