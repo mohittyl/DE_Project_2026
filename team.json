@@ -1,0 +1,28 @@
+
+{
+  "team_name": "FinTrack",
+  "group_lead": {
+    "name": "Mohit",
+    "enrollment_no": "2501010716",
+    "github": "mohittyl"
+  },
+  "members": [
+    {
+      "name": "Parv Narang",
+      "enrollment_no": "2501010329",
+      "github": "ParvNarang20"
+    },
+    {
+      "name": "Akash Mukherjee",
+      "enrollment_no": "2501010043",
+      "github": "Akash10053218"
+    },
+    {
+      "name": "Keshav Goel",
+      "enrollment_no": "2501010720",
+      "github": "kshv-gl"
+    }
+  ],
+  "postgres_version": "PostgreSQL 16.14",
+  "laptop_used_for_benchmarks": "MacBook Pro M4"
+}
