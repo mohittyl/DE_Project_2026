@@ -1,0 +1,87 @@
+=== W04 run 1 ===
+Update on league_memberships lm  (cost=676.90..1489.32 rows=0 width=0) (actual time=5.784..5.785 rows=0.00 loops=1)
+  Buffers: shared hit=6700 dirtied=317 written=8
+  ->  Hash Join  (cost=676.90..1489.32 rows=123 width=86) (actual time=1.036..2.884 rows=847.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=479
+        ->  Seq Scan on league_memberships lm  (cost=0.00..523.98 rows=28598 width=14) (actual time=0.004..0.855 rows=28598.00 loops=1)
+              Buffers: shared hit=238
+        ->  Hash  (cost=664.19..664.19 rows=847 width=56) (actual time=1.020..1.021 rows=847.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 81kB
+              Buffers: shared hit=241
+              ->  Subquery Scan on r  (cost=636.67..664.19 rows=847 width=56) (actual time=0.821..0.964 rows=847.00 loops=1)
+                    Buffers: shared hit=241
+                    ->  WindowAgg  (cost=636.67..655.72 rows=847 width=24) (actual time=0.812..0.904 rows=847.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=241
+                          ->  Sort  (cost=636.67..638.78 rows=847 width=16) (actual time=0.808..0.824 rows=847.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 51kB
+                                Buffers: shared hit=241
+                                ->  Seq Scan on league_memberships  (cost=0.00..595.48 rows=847 width=16) (actual time=0.003..0.710 rows=847.00 loops=1)
+                                      Filter: (week_start = '2026-06-29'::date)
+                                      Rows Removed by Filter: 27751
+                                      Buffers: shared hit=238
+Planning:
+  Buffers: shared hit=189
+Planning Time: 0.302 ms
+Execution Time: 5.848 ms
+=== W04 run 2 ===
+Update on league_memberships lm  (cost=697.00..1533.32 rows=0 width=0) (actual time=4.655..4.656 rows=0.00 loops=1)
+  Buffers: shared hit=7252 dirtied=8 written=8
+  ->  Hash Join  (cost=697.00..1533.32 rows=127 width=86) (actual time=1.173..3.044 rows=847.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=493
+        ->  Seq Scan on league_memberships lm  (cost=0.00..539.39 rows=29439 width=14) (actual time=0.003..0.939 rows=28598.00 loops=1)
+              Buffers: shared hit=245
+        ->  Hash  (cost=683.92..683.92 rows=872 width=56) (actual time=1.160..1.160 rows=847.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 81kB
+              Buffers: shared hit=248
+              ->  Subquery Scan on r  (cost=655.60..683.92 rows=872 width=56) (actual time=0.986..1.116 rows=847.00 loops=1)
+                    Buffers: shared hit=248
+                    ->  WindowAgg  (cost=655.60..675.20 rows=872 width=24) (actual time=0.980..1.063 rows=847.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=248
+                          ->  Sort  (cost=655.58..657.76 rows=872 width=16) (actual time=0.976..0.990 rows=847.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 51kB
+                                Buffers: shared hit=248
+                                ->  Seq Scan on league_memberships  (cost=0.00..612.99 rows=872 width=16) (actual time=0.003..0.887 rows=847.00 loops=1)
+                                      Filter: (week_start = '2026-06-29'::date)
+                                      Rows Removed by Filter: 27751
+                                      Buffers: shared hit=245
+Planning:
+  Buffers: shared hit=191
+Planning Time: 0.262 ms
+Execution Time: 4.712 ms
+=== W04 run 3 ===
+Update on league_memberships lm  (cost=717.10..1577.32 rows=0 width=0) (actual time=4.794..4.795 rows=0.00 loops=1)
+  Buffers: shared hit=7346 dirtied=7 written=7
+  ->  Hash Join  (cost=717.10..1577.32 rows=131 width=86) (actual time=1.193..3.164 rows=847.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=507
+        ->  Seq Scan on league_memberships lm  (cost=0.00..554.80 rows=30280 width=14) (actual time=0.003..0.947 rows=28598.00 loops=1)
+              Buffers: shared hit=252
+        ->  Hash  (cost=703.65..703.65 rows=897 width=56) (actual time=1.180..1.180 rows=847.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 81kB
+              Buffers: shared hit=255
+              ->  Subquery Scan on r  (cost=674.52..703.65 rows=897 width=56) (actual time=0.997..1.136 rows=847.00 loops=1)
+                    Buffers: shared hit=255
+                    ->  WindowAgg  (cost=674.52..694.68 rows=897 width=24) (actual time=0.991..1.077 rows=847.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=255
+                          ->  Sort  (cost=674.49..676.74 rows=897 width=16) (actual time=0.988..1.001 rows=847.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 51kB
+                                Buffers: shared hit=255
+                                ->  Seq Scan on league_memberships  (cost=0.00..630.50 rows=897 width=16) (actual time=0.003..0.896 rows=847.00 loops=1)
+                                      Filter: (week_start = '2026-06-29'::date)
+                                      Rows Removed by Filter: 27751
+                                      Buffers: shared hit=252
+Planning:
+  Buffers: shared hit=191
+Planning Time: 0.288 ms
+Execution Time: 4.849 ms

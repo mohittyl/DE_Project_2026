@@ -1,0 +1,102 @@
+=== R10 run 1 ===
+Sort  (cost=3775.24..3775.25 rows=3 width=13) (actual time=3.641..4.086 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3033
+  ->  Finalize GroupAggregate  (cost=3774.53..3775.22 rows=3 width=13) (actual time=3.636..4.081 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Buffers: shared hit=3030
+        ->  Gather Merge  (cost=3774.53..3775.16 rows=5 width=13) (actual time=3.614..4.079 rows=4.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=3030
+              ->  Partial GroupAggregate  (cost=2774.52..2774.59 rows=3 width=13) (actual time=2.835..2.849 rows=2.00 loops=2)
+                    Group Key: l.subscription
+                    Buffers: shared hit=3030
+                    ->  Sort  (cost=2774.52..2774.53 rows=6 width=5) (actual time=2.830..2.837 rows=327.50 loops=2)
+                          Sort Key: l.subscription
+                          Sort Method: quicksort  Memory: 25kB
+                          Buffers: shared hit=3030
+                          Worker 0:  Sort Method: quicksort  Memory: 25kB
+                          ->  Nested Loop  (cost=0.29..2774.44 rows=6 width=5) (actual time=0.023..2.810 rows=327.50 loops=2)
+                                Buffers: shared hit=3022
+                                ->  Parallel Seq Scan on daily_activity d  (cost=0.00..2724.61 rows=6 width=4) (actual time=0.017..2.410 rows=327.50 loops=2)
+                                      Filter: (used_streak_freeze AND (EXTRACT(year FROM activity_date) = '2026'::numeric))
+                                      Rows Removed by Filter: 94227
+                                      Buffers: shared hit=1056
+                                ->  Index Scan using learners_pkey on learners l  (cost=0.29..8.30 rows=1 width=9) (actual time=0.001..0.001 rows=1.00 loops=655)
+                                      Index Cond: (learner_id = d.learner_id)
+                                      Index Searches: 655
+                                      Buffers: shared hit=1966
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.391 ms
+Execution Time: 4.115 ms
+=== R10 run 2 ===
+Sort  (cost=3775.24..3775.25 rows=3 width=13) (actual time=3.679..4.118 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3033
+  ->  Finalize GroupAggregate  (cost=3774.53..3775.22 rows=3 width=13) (actual time=3.675..4.114 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Buffers: shared hit=3030
+        ->  Gather Merge  (cost=3774.53..3775.16 rows=5 width=13) (actual time=3.646..4.102 rows=4.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=3030
+              ->  Partial GroupAggregate  (cost=2774.52..2774.59 rows=3 width=13) (actual time=2.863..2.874 rows=2.00 loops=2)
+                    Group Key: l.subscription
+                    Buffers: shared hit=3030
+                    ->  Sort  (cost=2774.52..2774.53 rows=6 width=5) (actual time=2.859..2.864 rows=327.50 loops=2)
+                          Sort Key: l.subscription
+                          Sort Method: quicksort  Memory: 25kB
+                          Buffers: shared hit=3030
+                          Worker 0:  Sort Method: quicksort  Memory: 25kB
+                          ->  Nested Loop  (cost=0.29..2774.44 rows=6 width=5) (actual time=0.022..2.834 rows=327.50 loops=2)
+                                Buffers: shared hit=3022
+                                ->  Parallel Seq Scan on daily_activity d  (cost=0.00..2724.61 rows=6 width=4) (actual time=0.017..2.438 rows=327.50 loops=2)
+                                      Filter: (used_streak_freeze AND (EXTRACT(year FROM activity_date) = '2026'::numeric))
+                                      Rows Removed by Filter: 94227
+                                      Buffers: shared hit=1056
+                                ->  Index Scan using learners_pkey on learners l  (cost=0.29..8.30 rows=1 width=9) (actual time=0.001..0.001 rows=1.00 loops=655)
+                                      Index Cond: (learner_id = d.learner_id)
+                                      Index Searches: 655
+                                      Buffers: shared hit=1966
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.368 ms
+Execution Time: 4.147 ms
+=== R10 run 3 ===
+Sort  (cost=3775.24..3775.25 rows=3 width=13) (actual time=3.666..4.104 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=3033
+  ->  Finalize GroupAggregate  (cost=3774.53..3775.22 rows=3 width=13) (actual time=3.661..4.100 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Buffers: shared hit=3030
+        ->  Gather Merge  (cost=3774.53..3775.16 rows=5 width=13) (actual time=3.636..4.098 rows=4.00 loops=1)
+              Workers Planned: 1
+              Workers Launched: 1
+              Buffers: shared hit=3030
+              ->  Partial GroupAggregate  (cost=2774.52..2774.59 rows=3 width=13) (actual time=2.859..2.875 rows=2.00 loops=2)
+                    Group Key: l.subscription
+                    Buffers: shared hit=3030
+                    ->  Sort  (cost=2774.52..2774.53 rows=6 width=5) (actual time=2.855..2.862 rows=327.50 loops=2)
+                          Sort Key: l.subscription
+                          Sort Method: quicksort  Memory: 25kB
+                          Buffers: shared hit=3030
+                          Worker 0:  Sort Method: quicksort  Memory: 25kB
+                          ->  Nested Loop  (cost=0.29..2774.44 rows=6 width=5) (actual time=0.017..2.831 rows=327.50 loops=2)
+                                Buffers: shared hit=3022
+                                ->  Parallel Seq Scan on daily_activity d  (cost=0.00..2724.61 rows=6 width=4) (actual time=0.012..2.436 rows=327.50 loops=2)
+                                      Filter: (used_streak_freeze AND (EXTRACT(year FROM activity_date) = '2026'::numeric))
+                                      Rows Removed by Filter: 94227
+                                      Buffers: shared hit=1056
+                                ->  Index Scan using learners_pkey on learners l  (cost=0.29..8.30 rows=1 width=9) (actual time=0.001..0.001 rows=1.00 loops=655)
+                                      Index Cond: (learner_id = d.learner_id)
+                                      Index Searches: 655
+                                      Buffers: shared hit=1966
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.362 ms
+Execution Time: 4.139 ms
