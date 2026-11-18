@@ -281,3 +281,19 @@ ORDER BY 1, 2;
 INSERT INTO lesson_attempts (attempt_id, learner_id, lesson_id, started_at, device)
 VALUES (90000001, 1042, 1, '2026-07-01 07:00:00+05:30', 'ANDROID');
 
+
+-- @W02
+-- Lesson end: finish the most recent unfinished attempt of 30 June 2026 with 2 mistakes
+UPDATE lesson_attempts
+SET completed_at = started_at + interval '4 minutes',
+    mistakes = 2,
+    hearts_lost = 2,
+    xp_earned = 10
+WHERE attempt_id = (
+    SELECT max(attempt_id)
+    FROM lesson_attempts
+    WHERE completed_at IS NULL
+      AND started_at >= TIMESTAMPTZ '2026-06-30 00:00:00+05:30'
+      AND started_at < TIMESTAMPTZ '2026-07-01 00:00:00+05:30'
+);
+
