@@ -240,3 +240,16 @@ ORDER BY started_at DESC
 OFFSET 100000
 LIMIT 25;
 
+
+-- @R23
+-- Monetisation: Super and Max learners in India who were active in the last 7 days of June 2026
+SELECT l.subscription, count(DISTINCT l.learner_id) AS active_paid_learners
+FROM learners l
+JOIN daily_activity d
+  ON d.learner_id = l.learner_id
+ AND d.activity_date >= DATE '2026-06-24'
+ AND d.xp > 0
+WHERE l.country_code = 'IN'
+  AND l.subscription IN ('SUPER', 'MAX')
+GROUP BY l.subscription;
+
