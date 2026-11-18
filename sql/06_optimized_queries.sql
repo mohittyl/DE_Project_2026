@@ -231,3 +231,12 @@ HAVING count(*) = 7
    )
 ORDER BY d.learner_id;
 
+
+-- @R22
+-- Support console: all lesson attempts, newest first, page 4,001 (25 per page)
+SELECT attempt_id, learner_id, lesson_id, started_at, xp_earned
+FROM lesson_attempts
+ORDER BY started_at DESC
+OFFSET 100000
+LIMIT 25;
+
