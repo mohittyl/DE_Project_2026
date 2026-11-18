@@ -329,3 +329,15 @@ FROM (
 WHERE lm.learner_id = r.learner_id
   AND lm.week_start = r.week_start;
 
+
+-- @W05
+-- Achievements catch-up: award the "100 XP" badge to every learner who has 100+ XP but not the badge
+INSERT INTO learner_achievements (learner_id, achievement_id, earned_at)
+SELECT e.learner_id,
+       (SELECT achievement_id FROM achievements WHERE code = 'XP_100'),
+       TIMESTAMPTZ '2026-07-01 00:00:00+05:30'
+FROM enrollments e
+GROUP BY e.learner_id
+HAVING sum(e.total_xp) >= 100
+ON CONFLICT (learner_id, achievement_id) DO NOTHING;
+
