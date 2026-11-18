@@ -125,3 +125,15 @@ WHERE NOT EXISTS (
     WHERE r.referred_by = l.learner_id
 );
 
+
+-- @R14
+-- Leagues team: promotion and demotion rates per tier over the last 4 completed weeks
+SELECT tier, count(*) AS memberships,
+       round(100.0 * count(*) FILTER (WHERE result = 'PROMOTED') / count(*), 1) AS promoted_pct,
+       round(100.0 * count(*) FILTER (WHERE result = 'DEMOTED') / count(*), 1) AS demoted_pct
+FROM league_memberships
+WHERE week_start >= DATE '2026-06-01'
+  AND week_start < DATE '2026-06-23'
+GROUP BY tier
+ORDER BY tier;
+
