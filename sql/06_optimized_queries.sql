@@ -176,3 +176,15 @@ WHERE completed_at IS NOT NULL
 GROUP BY device
 ORDER BY perfect_pct DESC;
 
+
+-- @R18
+-- Course popularity: enrollments per course, and how many started in 2026
+SELECT c.title, count(*) AS learners,
+       count(*) FILTER (
+           WHERE e.enrolled_at >= TIMESTAMPTZ '2026-01-01 00:00:00+05:30'
+       ) AS new_in_2026
+FROM enrollments e
+JOIN courses c ON c.course_id = e.course_id
+GROUP BY c.title
+ORDER BY learners DESC;
+
