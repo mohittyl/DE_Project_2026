@@ -201,3 +201,16 @@ WHERE u.course_id = 1
 GROUP BY l.lesson_id, u.unit_no, l.lesson_no
 ORDER BY u.unit_no, l.lesson_no;
 
+
+-- @R20
+-- Growth: XP earned per day across the platform and running total, June 2026
+SELECT day, xp, sum(xp) OVER (ORDER BY day) AS running_xp
+FROM (
+    SELECT started_at::date AS day, sum(xp_earned) AS xp
+    FROM lesson_attempts
+    WHERE started_at >= TIMESTAMPTZ '2026-06-01 00:00:00+05:30'
+      AND started_at < TIMESTAMPTZ '2026-07-01 00:00:00+05:30'
+    GROUP BY started_at::date
+) d
+ORDER BY day;
+
