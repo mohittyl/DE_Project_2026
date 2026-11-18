@@ -69,3 +69,59 @@ HAVING count(*) >= 100
 ORDER BY avg_mistakes DESC
 LIMIT 20;
 
+
+-- @R08
+-- Product analytics: quit rate per lesson type
+SELECT l.lesson_type, count(*) AS attempts,
+       round(100.0 * count(*) FILTER (WHERE a.completed_at IS NULL) / count(*), 2) AS quit_pct
+FROM lesson_attempts a
+JOIN lessons l ON l.lesson_id = a.lesson_id
+GROUP BY l.lesson_type
+ORDER BY quit_pct DESC;
+
+-- @R09
+-- Growth: daily active learners in June 2026
+SELECT activity_date, count(*) AS active_learners
+FROM daily_activity
+WHERE xp > 0
+  AND activity_date >= DATE '2026-06-01'
+  AND activity_date < DATE '2026-07-01'
+GROUP BY activity_date
+ORDER BY activity_date;
+
+-- @R10
+-- Monetisation: streak freezes used per subscription tier in 2026
+SELECT l.subscription, count(*) AS freezes_used
+FROM daily_activity d
+JOIN learners l ON l.learner_id = d.learner_id
+WHERE d.used_streak_freeze
+  AND d.activity_date >= DATE '2026-01-01'
+  AND d.activity_date < DATE '2027-01-01'
+GROUP BY l.subscription
+ORDER BY freezes_used DESC;
+
+-- @R11
+-- Sign-in by username
+SELECT learner_id, email, subscription, daily_goal_xp
+FROM learners
+WHERE username = 'Karan_xVerma1042';
+
+-- @R12
+-- Profile: learner 1042's achievements, newest first
+SELECT a.code, a.name, la.earned_at
+FROM learner_achievements la
+JOIN achievements a ON a.achievement_id = la.achievement_id
+WHERE la.learner_id = 1042
+ORDER BY la.earned_at DESC;
+
+-- @R13
+-- Referral programme: learners who have not referred anyone yet
+-- NOT EXISTS avoids the NULL-related issue caused by NOT IN.
+SELECT l.learner_id, l.username
+FROM learners l
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM learners r
+    WHERE r.referred_by = l.learner_id
+);
+
