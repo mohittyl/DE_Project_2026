@@ -297,3 +297,13 @@ WHERE attempt_id = (
       AND started_at < TIMESTAMPTZ '2026-07-01 00:00:00+05:30'
 );
 
+
+-- @W03
+-- Daily activity: add 20 XP to learner 1042's 1 July 2026 (creating the row if needed)
+INSERT INTO daily_activity (learner_id, activity_date, xp, lessons_completed)
+VALUES (1042, DATE '2026-07-01', 20, 1)
+ON CONFLICT (learner_id, activity_date)
+DO UPDATE SET
+    xp = daily_activity.xp + EXCLUDED.xp,
+    lessons_completed = daily_activity.lessons_completed + EXCLUDED.lessons_completed;
+
