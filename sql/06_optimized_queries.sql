@@ -307,3 +307,25 @@ DO UPDATE SET
     xp = daily_activity.xp + EXCLUDED.xp,
     lessons_completed = daily_activity.lessons_completed + EXCLUDED.lessons_completed;
 
+
+-- @W04
+-- Weekly league close (week of 29 June 2026): rank everyone in their cohort and set promotion results
+UPDATE league_memberships lm
+SET final_rank = r.rnk,
+    result = CASE
+        WHEN r.rnk <= 7 THEN 'PROMOTED'
+        WHEN r.rnk >= 26 THEN 'DEMOTED'
+        ELSE 'STAYED'
+    END
+FROM (
+    SELECT learner_id, week_start,
+           row_number() OVER (
+               PARTITION BY cohort_id
+               ORDER BY weekly_xp DESC, learner_id
+           ) AS rnk
+    FROM league_memberships
+    WHERE week_start = DATE '2026-06-29'
+) r
+WHERE lm.learner_id = r.learner_id
+  AND lm.week_start = r.week_start;
+
