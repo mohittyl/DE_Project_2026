@@ -264,3 +264,14 @@ JOIN units u ON u.unit_id = l.unit_id
 GROUP BY u.cefr_level
 ORDER BY u.cefr_level;
 
+
+-- @R25
+-- Notifications team: lessons started per hour of the day, per country
+SELECT le.country_code,
+       EXTRACT(HOUR FROM a.started_at) AS hour,
+       count(*) AS lessons
+FROM lesson_attempts a
+JOIN learners le ON le.learner_id = a.learner_id
+GROUP BY 1, 2
+ORDER BY 1, 2;
+
