@@ -164,3 +164,15 @@ WHERE lower(username) LIKE 'karan%'
 ORDER BY username
 LIMIT 20;
 
+
+-- @R17
+-- Product analytics: perfect-lesson rate per device in 2026
+SELECT device, count(*) AS completed,
+       round(100.0 * count(*) FILTER (WHERE is_perfect) / count(*), 2) AS perfect_pct
+FROM lesson_attempts
+WHERE completed_at IS NOT NULL
+  AND started_at >= TIMESTAMPTZ '2026-01-01 00:00:00+05:30'
+  AND started_at < TIMESTAMPTZ '2027-01-01 00:00:00+05:30'
+GROUP BY device
+ORDER BY perfect_pct DESC;
+
