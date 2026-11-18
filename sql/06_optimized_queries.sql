@@ -155,3 +155,12 @@ FROM learners l
 WHERE l.joined_at >= TIMESTAMPTZ '2026-01-01 00:00:00+05:30'
   AND l.joined_at < TIMESTAMPTZ '2026-02-01 00:00:00+05:30';
 
+
+-- @R16
+-- Friends: search learners by username starting with "Karan"
+SELECT learner_id, username, country_code
+FROM learners
+WHERE lower(username) LIKE 'karan%'
+ORDER BY username
+LIMIT 20;
+
