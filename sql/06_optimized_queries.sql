@@ -137,3 +137,21 @@ WHERE week_start >= DATE '2026-06-01'
 GROUP BY tier
 ORDER BY tier;
 
+
+-- @R15
+-- Retention: learners who joined in January 2026 and were still active in June 2026
+SELECT count(*) AS joined_jan,
+       count(*) FILTER (
+           WHERE EXISTS (
+               SELECT 1
+               FROM daily_activity d
+               WHERE d.learner_id = l.learner_id
+                 AND d.activity_date >= DATE '2026-06-01'
+                 AND d.activity_date < DATE '2026-07-01'
+                 AND d.xp > 0
+           )
+       ) AS active_june
+FROM learners l
+WHERE l.joined_at >= TIMESTAMPTZ '2026-01-01 00:00:00+05:30'
+  AND l.joined_at < TIMESTAMPTZ '2026-02-01 00:00:00+05:30';
+
