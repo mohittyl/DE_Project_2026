@@ -275,3 +275,9 @@ JOIN learners le ON le.learner_id = a.learner_id
 GROUP BY 1, 2
 ORDER BY 1, 2;
 
+
+-- @W01
+-- Lesson start: learner 1042 starts lesson 1
+INSERT INTO lesson_attempts (attempt_id, learner_id, lesson_id, started_at, device)
+VALUES (90000001, 1042, 1, '2026-07-01 07:00:00+05:30', 'ANDROID');
+
