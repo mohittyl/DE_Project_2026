@@ -188,3 +188,16 @@ JOIN courses c ON c.course_id = e.course_id
 GROUP BY c.title
 ORDER BY learners DESC;
 
+
+-- @R19
+-- Curriculum report: completions and average mistakes of every lesson in the Spanish course
+SELECT l.lesson_id, u.unit_no, l.lesson_no,
+       count(a.attempt_id) FILTER (WHERE a.completed_at IS NOT NULL) AS completions,
+       round(avg(a.mistakes), 2) AS avg_mistakes
+FROM lessons l
+JOIN units u ON u.unit_id = l.unit_id
+LEFT JOIN lesson_attempts a ON a.lesson_id = l.lesson_id
+WHERE u.course_id = 1
+GROUP BY l.lesson_id, u.unit_no, l.lesson_no
+ORDER BY u.unit_no, l.lesson_no;
+
