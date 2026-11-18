@@ -253,3 +253,14 @@ WHERE l.country_code = 'IN'
   AND l.subscription IN ('SUPER', 'MAX')
 GROUP BY l.subscription;
 
+
+-- @R24
+-- Curriculum team: average hearts lost per lesson, by CEFR level
+SELECT u.cefr_level, count(*) AS attempts,
+       round(avg(a.hearts_lost), 2) AS avg_hearts_lost
+FROM lesson_attempts a
+JOIN lessons l ON l.lesson_id = a.lesson_id
+JOIN units u ON u.unit_id = l.unit_id
+GROUP BY u.cefr_level
+ORDER BY u.cefr_level;
+
