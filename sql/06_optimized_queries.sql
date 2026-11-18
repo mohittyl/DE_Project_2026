@@ -214,3 +214,20 @@ FROM (
 ) d
 ORDER BY day;
 
+
+-- @R21
+-- Streak reminders: learners active every day from 23 to 29 June but not yet on 30 June
+SELECT d.learner_id
+FROM daily_activity d
+WHERE d.activity_date >= DATE '2026-06-23'
+  AND d.activity_date < DATE '2026-06-30'
+GROUP BY d.learner_id
+HAVING count(*) = 7
+   AND NOT EXISTS (
+       SELECT 1
+       FROM daily_activity t
+       WHERE t.learner_id = d.learner_id
+         AND t.activity_date = DATE '2026-06-30'
+   )
+ORDER BY d.learner_id;
+
