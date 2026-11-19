@@ -1,0 +1,57 @@
+=== W02 run 1 ===
+Update on lesson_attempts  (cost=11.89..19.91 rows=0 width=0) (actual time=0.161..0.161 rows=0.00 loops=1)
+  Buffers: shared hit=59 read=4 dirtied=6
+  InitPlan 1
+    ->  Aggregate  (cost=11.46..11.47 rows=1 width=8) (actual time=0.010..0.010 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          ->  Index Only Scan using idx_attempts_unfinished_started_desc on lesson_attempts lesson_attempts_1  (cost=0.29..11.30 rows=63 width=8) (actual time=0.005..0.006 rows=34.00 loops=1)
+                Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                Heap Fetches: 3
+                Index Searches: 1
+                Buffers: shared hit=4
+  ->  Index Scan using lesson_attempts_pkey on lesson_attempts  (cost=0.42..8.44 rows=1 width=20) (actual time=0.021..0.023 rows=1.00 loops=1)
+        Index Cond: (attempt_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=256
+Planning Time: 0.471 ms
+Execution Time: 0.223 ms
+=== W02 run 2 ===
+Update on lesson_attempts  (cost=11.89..19.91 rows=0 width=0) (actual time=0.137..0.137 rows=0.00 loops=1)
+  Buffers: shared hit=63 dirtied=1
+  InitPlan 1
+    ->  Aggregate  (cost=11.46..11.47 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          ->  Index Only Scan using idx_attempts_unfinished_started_desc on lesson_attempts lesson_attempts_1  (cost=0.29..11.30 rows=63 width=8) (actual time=0.005..0.006 rows=34.00 loops=1)
+                Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                Heap Fetches: 3
+                Index Searches: 1
+                Buffers: shared hit=4
+  ->  Index Scan using lesson_attempts_pkey on lesson_attempts  (cost=0.42..8.44 rows=1 width=20) (actual time=0.020..0.023 rows=1.00 loops=1)
+        Index Cond: (attempt_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=253
+Planning Time: 0.433 ms
+Execution Time: 0.188 ms
+=== W02 run 3 ===
+Update on lesson_attempts  (cost=11.89..19.91 rows=0 width=0) (actual time=0.134..0.134 rows=0.00 loops=1)
+  Buffers: shared hit=63 dirtied=1
+  InitPlan 1
+    ->  Aggregate  (cost=11.46..11.47 rows=1 width=8) (actual time=0.009..0.009 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          ->  Index Only Scan using idx_attempts_unfinished_started_desc on lesson_attempts lesson_attempts_1  (cost=0.29..11.30 rows=63 width=8) (actual time=0.005..0.006 rows=34.00 loops=1)
+                Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                Heap Fetches: 3
+                Index Searches: 1
+                Buffers: shared hit=4
+  ->  Index Scan using lesson_attempts_pkey on lesson_attempts  (cost=0.42..8.44 rows=1 width=20) (actual time=0.019..0.022 rows=1.00 loops=1)
+        Index Cond: (attempt_id = (InitPlan 1).col1)
+        Index Searches: 1
+        Buffers: shared hit=10
+Planning:
+  Buffers: shared hit=253
+Planning Time: 0.433 ms
+Execution Time: 0.183 ms

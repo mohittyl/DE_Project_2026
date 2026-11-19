@@ -1,0 +1,57 @@
+=== R16 run 1 ===
+Limit  (cost=293.51..293.56 rows=20 width=24) (actual time=0.829..0.830 rows=20.00 loops=1)
+  Buffers: shared hit=371 read=8
+  ->  Sort  (cost=293.51..293.89 rows=150 width=24) (actual time=0.828..0.828 rows=20.00 loops=1)
+        Sort Key: username
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=371 read=8
+        ->  Bitmap Heap Scan on learners  (cost=5.82..289.52 rows=150 width=24) (actual time=0.113..0.686 rows=1200.00 loops=1)
+              Filter: (lower((username)::text) ~~ 'karan%'::text)
+              Heap Blocks: exact=368
+              Buffers: shared hit=368 read=8
+              ->  Bitmap Index Scan on idx_learners_username_lower_prefix  (cost=0.00..5.79 rows=150 width=0) (actual time=0.073..0.073 rows=1200.00 loops=1)
+                    Index Cond: ((lower((username)::text) ~>=~ 'karan'::text) AND (lower((username)::text) ~<~ 'karao'::text))
+                    Index Searches: 1
+                    Buffers: shared read=8
+Planning:
+  Buffers: shared hit=213
+Planning Time: 0.348 ms
+Execution Time: 0.849 ms
+=== R16 run 2 ===
+Limit  (cost=293.51..293.56 rows=20 width=24) (actual time=0.696..0.697 rows=20.00 loops=1)
+  Buffers: shared hit=379
+  ->  Sort  (cost=293.51..293.89 rows=150 width=24) (actual time=0.696..0.696 rows=20.00 loops=1)
+        Sort Key: username
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=379
+        ->  Bitmap Heap Scan on learners  (cost=5.82..289.52 rows=150 width=24) (actual time=0.070..0.573 rows=1200.00 loops=1)
+              Filter: (lower((username)::text) ~~ 'karan%'::text)
+              Heap Blocks: exact=368
+              Buffers: shared hit=376
+              ->  Bitmap Index Scan on idx_learners_username_lower_prefix  (cost=0.00..5.79 rows=150 width=0) (actual time=0.041..0.041 rows=1200.00 loops=1)
+                    Index Cond: ((lower((username)::text) ~>=~ 'karan'::text) AND (lower((username)::text) ~<~ 'karao'::text))
+                    Index Searches: 1
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=213
+Planning Time: 0.312 ms
+Execution Time: 0.708 ms
+=== R16 run 3 ===
+Limit  (cost=293.51..293.56 rows=20 width=24) (actual time=0.684..0.685 rows=20.00 loops=1)
+  Buffers: shared hit=379
+  ->  Sort  (cost=293.51..293.89 rows=150 width=24) (actual time=0.684..0.684 rows=20.00 loops=1)
+        Sort Key: username
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=379
+        ->  Bitmap Heap Scan on learners  (cost=5.82..289.52 rows=150 width=24) (actual time=0.069..0.564 rows=1200.00 loops=1)
+              Filter: (lower((username)::text) ~~ 'karan%'::text)
+              Heap Blocks: exact=368
+              Buffers: shared hit=376
+              ->  Bitmap Index Scan on idx_learners_username_lower_prefix  (cost=0.00..5.79 rows=150 width=0) (actual time=0.041..0.041 rows=1200.00 loops=1)
+                    Index Cond: ((lower((username)::text) ~>=~ 'karan'::text) AND (lower((username)::text) ~<~ 'karao'::text))
+                    Index Searches: 1
+                    Buffers: shared hit=8
+Planning:
+  Buffers: shared hit=213
+Planning Time: 0.315 ms
+Execution Time: 0.697 ms

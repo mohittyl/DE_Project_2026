@@ -1,0 +1,93 @@
+=== R19 run 1 ===
+Sort  (cost=3186.38..3229.18 rows=17118 width=48) (actual time=13.348..13.351 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=42077
+  ->  HashAggregate  (cost=1725.94..1982.71 rows=17118 width=48) (actual time=13.246..13.328 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=42074
+        ->  Nested Loop Left Join  (cost=5.42..1554.76 rows=17118 width=26) (actual time=0.022..10.408 rows=47737.00 loops=1)
+              Buffers: shared hit=42074
+              ->  Hash Join  (cost=5.00..39.31 rows=160 width=8) (actual time=0.017..0.113 rows=160.00 loops=1)
+                    Hash Cond: (l.unit_id = u.unit_id)
+                    Buffers: shared hit=14
+                    ->  Seq Scan on lessons l  (cost=0.00..29.60 rows=1760 width=10) (actual time=0.003..0.040 rows=1760.00 loops=1)
+                          Buffers: shared hit=12
+                    ->  Hash  (cost=4.75..4.75 rows=20 width=6) (actual time=0.010..0.010 rows=20.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Seq Scan on units u  (cost=0.00..4.75 rows=20 width=6) (actual time=0.003..0.008 rows=20.00 loops=1)
+                                Filter: (course_id = 1)
+                                Rows Removed by Filter: 200
+                                Buffers: shared hit=2
+              ->  Index Scan using idx_attempts_lesson_completed on lesson_attempts a  (cost=0.42..8.40 rows=107 width=22) (actual time=0.002..0.049 rows=298.36 loops=160)
+                    Index Cond: (lesson_id = l.lesson_id)
+                    Index Searches: 160
+                    Buffers: shared hit=42060
+Planning:
+  Buffers: shared hit=383
+Planning Time: 0.626 ms
+Execution Time: 13.421 ms
+=== R19 run 2 ===
+Sort  (cost=3186.38..3229.18 rows=17118 width=48) (actual time=14.137..14.141 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=42077
+  ->  HashAggregate  (cost=1725.94..1982.71 rows=17118 width=48) (actual time=14.035..14.117 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=42074
+        ->  Nested Loop Left Join  (cost=5.42..1554.76 rows=17118 width=26) (actual time=0.023..11.161 rows=47737.00 loops=1)
+              Buffers: shared hit=42074
+              ->  Hash Join  (cost=5.00..39.31 rows=160 width=8) (actual time=0.017..0.118 rows=160.00 loops=1)
+                    Hash Cond: (l.unit_id = u.unit_id)
+                    Buffers: shared hit=14
+                    ->  Seq Scan on lessons l  (cost=0.00..29.60 rows=1760 width=10) (actual time=0.003..0.044 rows=1760.00 loops=1)
+                          Buffers: shared hit=12
+                    ->  Hash  (cost=4.75..4.75 rows=20 width=6) (actual time=0.010..0.011 rows=20.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Seq Scan on units u  (cost=0.00..4.75 rows=20 width=6) (actual time=0.003..0.008 rows=20.00 loops=1)
+                                Filter: (course_id = 1)
+                                Rows Removed by Filter: 200
+                                Buffers: shared hit=2
+              ->  Index Scan using idx_attempts_lesson_completed on lesson_attempts a  (cost=0.42..8.40 rows=107 width=22) (actual time=0.002..0.053 rows=298.36 loops=160)
+                    Index Cond: (lesson_id = l.lesson_id)
+                    Index Searches: 160
+                    Buffers: shared hit=42060
+Planning:
+  Buffers: shared hit=383
+Planning Time: 0.636 ms
+Execution Time: 14.212 ms
+=== R19 run 3 ===
+Sort  (cost=3186.38..3229.18 rows=17118 width=48) (actual time=13.351..13.354 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=42077
+  ->  HashAggregate  (cost=1725.94..1982.71 rows=17118 width=48) (actual time=13.251..13.331 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=42074
+        ->  Nested Loop Left Join  (cost=5.42..1554.76 rows=17118 width=26) (actual time=0.022..10.430 rows=47737.00 loops=1)
+              Buffers: shared hit=42074
+              ->  Hash Join  (cost=5.00..39.31 rows=160 width=8) (actual time=0.016..0.112 rows=160.00 loops=1)
+                    Hash Cond: (l.unit_id = u.unit_id)
+                    Buffers: shared hit=14
+                    ->  Seq Scan on lessons l  (cost=0.00..29.60 rows=1760 width=10) (actual time=0.002..0.042 rows=1760.00 loops=1)
+                          Buffers: shared hit=12
+                    ->  Hash  (cost=4.75..4.75 rows=20 width=6) (actual time=0.010..0.010 rows=20.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=2
+                          ->  Seq Scan on units u  (cost=0.00..4.75 rows=20 width=6) (actual time=0.003..0.008 rows=20.00 loops=1)
+                                Filter: (course_id = 1)
+                                Rows Removed by Filter: 200
+                                Buffers: shared hit=2
+              ->  Index Scan using idx_attempts_lesson_completed on lesson_attempts a  (cost=0.42..8.40 rows=107 width=22) (actual time=0.002..0.050 rows=298.36 loops=160)
+                    Index Cond: (lesson_id = l.lesson_id)
+                    Index Searches: 160
+                    Buffers: shared hit=42060
+Planning:
+  Buffers: shared hit=383
+Planning Time: 0.604 ms
+Execution Time: 13.421 ms

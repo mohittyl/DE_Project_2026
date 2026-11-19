@@ -1,0 +1,33 @@
+=== R22 run 1 ===
+Limit  (cost=3946.65..3947.64 rows=25 width=26) (actual time=6.063..6.065 rows=25.00 loops=1)
+  Buffers: shared hit=199 read=511
+  ->  Index Only Scan using idx_attempts_started_desc on lesson_attempts  (cost=0.42..7431.17 rows=188300 width=26) (actual time=0.027..4.446 rows=100025.00 loops=1)
+        Heap Fetches: 194
+        Index Searches: 1
+        Buffers: shared hit=199 read=511
+Planning:
+  Buffers: shared hit=210
+Planning Time: 0.296 ms
+Execution Time: 6.076 ms
+=== R22 run 2 ===
+Limit  (cost=3946.65..3947.64 rows=25 width=26) (actual time=5.332..5.334 rows=25.00 loops=1)
+  Buffers: shared hit=710
+  ->  Index Only Scan using idx_attempts_started_desc on lesson_attempts  (cost=0.42..7431.17 rows=188300 width=26) (actual time=0.027..3.753 rows=100025.00 loops=1)
+        Heap Fetches: 194
+        Index Searches: 1
+        Buffers: shared hit=710
+Planning:
+  Buffers: shared hit=210
+Planning Time: 0.304 ms
+Execution Time: 5.345 ms
+=== R22 run 3 ===
+Limit  (cost=3946.65..3947.64 rows=25 width=26) (actual time=5.405..5.407 rows=25.00 loops=1)
+  Buffers: shared hit=710
+  ->  Index Only Scan using idx_attempts_started_desc on lesson_attempts  (cost=0.42..7431.17 rows=188300 width=26) (actual time=0.027..3.807 rows=100025.00 loops=1)
+        Heap Fetches: 194
+        Index Searches: 1
+        Buffers: shared hit=710
+Planning:
+  Buffers: shared hit=210
+Planning Time: 0.322 ms
+Execution Time: 5.419 ms

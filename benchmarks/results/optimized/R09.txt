@@ -1,0 +1,39 @@
+=== R09 run 1 ===
+GroupAggregate  (cost=0.42..621.55 rows=546 width=12) (actual time=0.076..0.867 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=2 read=41
+  ->  Index Only Scan using idx_daily_activity_date_xp on daily_activity  (cost=0.42..550.41 rows=13136 width=4) (actual time=0.041..0.538 rows=13915.00 loops=1)
+        Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+        Heap Fetches: 3
+        Index Searches: 1
+        Buffers: shared hit=2 read=41
+Planning:
+  Buffers: shared hit=146
+Planning Time: 0.260 ms
+Execution Time: 0.892 ms
+=== R09 run 2 ===
+GroupAggregate  (cost=0.42..621.55 rows=546 width=12) (actual time=0.055..0.723 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=43
+  ->  Index Only Scan using idx_daily_activity_date_xp on daily_activity  (cost=0.42..550.41 rows=13136 width=4) (actual time=0.026..0.433 rows=13915.00 loops=1)
+        Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+        Heap Fetches: 3
+        Index Searches: 1
+        Buffers: shared hit=43
+Planning:
+  Buffers: shared hit=146
+Planning Time: 0.236 ms
+Execution Time: 0.751 ms
+=== R09 run 3 ===
+GroupAggregate  (cost=0.42..621.55 rows=546 width=12) (actual time=0.053..0.716 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=43
+  ->  Index Only Scan using idx_daily_activity_date_xp on daily_activity  (cost=0.42..550.41 rows=13136 width=4) (actual time=0.025..0.426 rows=13915.00 loops=1)
+        Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+        Heap Fetches: 3
+        Index Searches: 1
+        Buffers: shared hit=43
+Planning:
+  Buffers: shared hit=146
+Planning Time: 0.232 ms
+Execution Time: 0.741 ms

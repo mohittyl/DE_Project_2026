@@ -1,0 +1,31 @@
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,0.178,0.156,0.108,0.271,Seq Scan on units | Seq Scan on courses | Index Only Scan using idx_lessons_unit_order on lessons
+R02,READ,0.072,0.056,0.052,0.107,Index Only Scan using idx_enrollments_learner_xp on enrollments | Seq Scan on courses
+R03,READ,0.088,0.087,0.082,0.096,Index Only Scan using daily_activity_pk on daily_activity
+R04,READ,0.080,0.076,0.076,0.087,Index Scan using learners_pkey on learners | Bitmap Heap Scan on lesson_attempts | Bitmap Index Scan on idx_attempts_learner_started
+R05,READ,0.078,0.072,0.067,0.095,Index Scan using league_membership_pk on league_memberships | Index Only Scan using idx_league_week_cohort_xp on league_memberships | Index Scan using learners_pkey on learners
+R06,READ,0.071,0.061,0.061,0.090,Index Scan using units_course_number_unique on units | Index Only Scan using idx_lessons_unit_order on lessons | Index Only Scan using idx_attempts_learner_lesson_completed on lesson_attempts
+R07,READ,7.259,7.156,6.603,8.019,Seq Scan on lessons | Seq Scan on units | Index Only Scan using idx_attempts_lesson_completed on lesson_attempts
+R08,READ,15.820,15.814,15.581,16.065,Seq Scan on lesson_attempts | Seq Scan on lessons
+R09,READ,0.795,0.751,0.741,0.892,Index Only Scan using idx_daily_activity_date_xp on daily_activity
+R10,READ,3.367,2.961,2.759,4.382,Index Only Scan using idx_daily_activity_freeze_date on daily_activity | Seq Scan on learners
+R11,READ,0.016,0.016,0.015,0.018,Index Scan using learners_username_key on learners
+R12,READ,0.104,0.061,0.061,0.191,Seq Scan on achievements | Index Only Scan using idx_learner_achievements_recent on learner_achievements
+R13,READ,3.525,3.490,3.472,3.612,Index Scan using learners_pkey on learners | Index Only Scan using idx_learners_referrer on learners
+R14,READ,1.018,1.004,0.982,1.068,Index Only Scan using idx_league_week_tier on league_memberships
+R15,READ,1.346,1.312,1.285,1.441,Seq Scan on learners | Index Scan using daily_activity_pk on daily_activity
+R16,READ,0.751,0.708,0.697,0.849,Bitmap Heap Scan on learners | Bitmap Index Scan on idx_learners_username_lower_prefix
+R17,READ,7.480,7.460,7.356,7.624,Index Scan using idx_attempts_completed_started on lesson_attempts
+R18,READ,5.711,5.703,5.593,5.837,Seq Scan on enrollments | Seq Scan on courses
+R19,READ,13.685,13.421,13.421,14.212,Seq Scan on lessons | Seq Scan on units | Index Scan using idx_attempts_lesson_completed on lesson_attempts
+R20,READ,2.275,2.309,2.206,2.310,Index Only Scan using idx_attempts_started_desc on lesson_attempts
+R21,READ,2.247,2.292,2.127,2.323,Index Only Scan using daily_activity_pk on daily_activity
+R22,READ,5.613,5.419,5.345,6.076,Index Only Scan using idx_attempts_started_desc on lesson_attempts
+R23,READ,0.573,0.570,0.559,0.589,Index Only Scan using idx_daily_activity_date_xp on daily_activity | Index Only Scan using idx_learners_paid_country on learners
+R24,READ,22.532,22.277,21.954,23.365,Seq Scan on lesson_attempts | Seq Scan on lessons | Seq Scan on units
+R25,READ,106.357,106.479,105.693,106.900,Seq Scan on lesson_attempts | Seq Scan on learners
+W01,WRITE,0.732,0.734,0.711,0.752,(no scan)
+W02,WRITE,0.198,0.188,0.183,0.223,Index Only Scan using idx_attempts_unfinished_started_desc on lesson_attempts | Index Scan using lesson_attempts_pkey on lesson_attempts
+W03,WRITE,0.488,0.485,0.467,0.513,(no scan)
+W04,WRITE,6.295,5.807,5.781,7.297,Seq Scan on league_memberships | Index Only Scan using idx_league_week_cohort_xp on league_memberships
+W05,WRITE,36.503,37.168,34.905,37.437,Seq Scan on achievements | Seq Scan on enrollments

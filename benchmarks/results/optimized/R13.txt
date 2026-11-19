@@ -1,0 +1,45 @@
+=== R13 run 1 ===
+Merge Anti Join  (cost=0.57..1525.91 rows=24268 width=21) (actual time=0.077..3.198 rows=24268.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=455 read=19
+  ->  Index Scan using learners_pkey on learners l  (cost=0.29..1157.29 rows=30000 width=21) (actual time=0.004..1.459 rows=30000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=451
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.29..614.29 rows=30000 width=4) (actual time=0.003..0.278 rows=8899.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=4 read=19
+Planning:
+  Buffers: shared hit=283 read=3
+Planning Time: 0.466 ms
+Execution Time: 3.612 ms
+=== R13 run 2 ===
+Merge Anti Join  (cost=0.57..1525.91 rows=24268 width=21) (actual time=0.064..3.090 rows=24268.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=474
+  ->  Index Scan using learners_pkey on learners l  (cost=0.29..1157.29 rows=30000 width=21) (actual time=0.003..1.420 rows=30000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=451
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.29..614.29 rows=30000 width=4) (actual time=0.002..0.247 rows=8899.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=23
+Planning:
+  Buffers: shared hit=286
+Planning Time: 0.404 ms
+Execution Time: 3.490 ms
+=== R13 run 3 ===
+Merge Anti Join  (cost=0.57..1525.91 rows=24268 width=21) (actual time=0.063..3.073 rows=24268.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=474
+  ->  Index Scan using learners_pkey on learners l  (cost=0.29..1157.29 rows=30000 width=21) (actual time=0.003..1.407 rows=30000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=451
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.29..614.29 rows=30000 width=4) (actual time=0.002..0.243 rows=8899.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=23
+Planning:
+  Buffers: shared hit=286
+Planning Time: 0.394 ms
+Execution Time: 3.472 ms

@@ -1,0 +1,78 @@
+=== R10 run 1 ===
+Sort  (cost=1147.57..1147.58 rows=3 width=13) (actual time=2.933..2.934 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=372 read=4
+  ->  HashAggregate  (cost=1147.52..1147.55 rows=3 width=13) (actual time=2.927..2.927 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=369 read=4
+        ->  Hash Join  (cost=1043.28..1143.79 rows=746 width=5) (actual time=2.806..2.891 rows=655.00 loops=1)
+              Hash Cond: (d.learner_id = l.learner_id)
+              Buffers: shared hit=369 read=4
+              ->  Index Only Scan using idx_daily_activity_freeze_date on daily_activity d  (cost=0.28..98.83 rows=746 width=4) (actual time=0.015..0.037 rows=655.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-01-01'::date) AND (activity_date < '2027-01-01'::date))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=1 read=4
+              ->  Hash  (cost=668.00..668.00 rows=30000 width=9) (actual time=2.774..2.774 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1542kB
+                    Buffers: shared hit=368
+                    ->  Seq Scan on learners l  (cost=0.00..668.00 rows=30000 width=9) (actual time=0.004..1.493 rows=30000.00 loops=1)
+                          Buffers: shared hit=368
+Planning:
+  Buffers: shared hit=393
+Planning Time: 0.561 ms
+Execution Time: 2.961 ms
+=== R10 run 2 ===
+Sort  (cost=1147.57..1147.58 rows=3 width=13) (actual time=2.731..2.731 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=376
+  ->  HashAggregate  (cost=1147.52..1147.55 rows=3 width=13) (actual time=2.724..2.724 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=373
+        ->  Hash Join  (cost=1043.28..1143.79 rows=746 width=5) (actual time=2.599..2.681 rows=655.00 loops=1)
+              Hash Cond: (d.learner_id = l.learner_id)
+              Buffers: shared hit=373
+              ->  Index Only Scan using idx_daily_activity_freeze_date on daily_activity d  (cost=0.28..98.83 rows=746 width=4) (actual time=0.005..0.026 rows=655.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-01-01'::date) AND (activity_date < '2027-01-01'::date))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+              ->  Hash  (cost=668.00..668.00 rows=30000 width=9) (actual time=2.577..2.578 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1542kB
+                    Buffers: shared hit=368
+                    ->  Seq Scan on learners l  (cost=0.00..668.00 rows=30000 width=9) (actual time=0.005..1.401 rows=30000.00 loops=1)
+                          Buffers: shared hit=368
+Planning:
+  Buffers: shared hit=393
+Planning Time: 0.546 ms
+Execution Time: 2.759 ms
+=== R10 run 3 ===
+Sort  (cost=1147.57..1147.58 rows=3 width=13) (actual time=4.340..4.341 rows=2.00 loops=1)
+  Sort Key: (count(*)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=376
+  ->  HashAggregate  (cost=1147.52..1147.55 rows=3 width=13) (actual time=4.331..4.332 rows=2.00 loops=1)
+        Group Key: l.subscription
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=373
+        ->  Hash Join  (cost=1043.28..1143.79 rows=746 width=5) (actual time=4.040..4.262 rows=655.00 loops=1)
+              Hash Cond: (d.learner_id = l.learner_id)
+              Buffers: shared hit=373
+              ->  Index Only Scan using idx_daily_activity_freeze_date on daily_activity d  (cost=0.28..98.83 rows=746 width=4) (actual time=0.007..0.060 rows=655.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-01-01'::date) AND (activity_date < '2027-01-01'::date))
+                    Heap Fetches: 0
+                    Index Searches: 1
+                    Buffers: shared hit=5
+              ->  Hash  (cost=668.00..668.00 rows=30000 width=9) (actual time=4.015..4.015 rows=30000.00 loops=1)
+                    Buckets: 32768  Batches: 1  Memory Usage: 1542kB
+                    Buffers: shared hit=368
+                    ->  Seq Scan on learners l  (cost=0.00..668.00 rows=30000 width=9) (actual time=0.007..2.043 rows=30000.00 loops=1)
+                          Buffers: shared hit=368
+Planning:
+  Buffers: shared hit=393
+Planning Time: 1.127 ms
+Execution Time: 4.382 ms
