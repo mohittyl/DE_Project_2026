@@ -1,0 +1,45 @@
+=== R02 run 1 ===
+Nested Loop  (cost=0.42..9.69 rows=1 width=41) (actual time=0.400..0.400 rows=1.00 loops=1)
+  Join Filter: (e.course_id = c.course_id)
+  Buffers: shared hit=1 read=4
+  ->  Index Only Scan using idx_enrollments_learner_xp on enrollments e  (cost=0.42..8.44 rows=1 width=17) (actual time=0.394..0.394 rows=1.00 loops=1)
+        Index Cond: (learner_id = 1042)
+        Heap Fetches: 1
+        Index Searches: 1
+        Buffers: shared read=4
+  ->  Seq Scan on courses c  (cost=0.00..1.11 rows=11 width=32) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=210 read=3
+Planning Time: 0.959 ms
+Execution Time: 0.431 ms
+=== R02 run 2 ===
+Nested Loop  (cost=0.42..9.69 rows=1 width=41) (actual time=0.013..0.014 rows=1.00 loops=1)
+  Join Filter: (e.course_id = c.course_id)
+  Buffers: shared hit=5
+  ->  Index Only Scan using idx_enrollments_learner_xp on enrollments e  (cost=0.42..8.44 rows=1 width=17) (actual time=0.009..0.009 rows=1.00 loops=1)
+        Index Cond: (learner_id = 1042)
+        Heap Fetches: 1
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Seq Scan on courses c  (cost=0.00..1.11 rows=11 width=32) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=213
+Planning Time: 0.443 ms
+Execution Time: 0.042 ms
+=== R02 run 3 ===
+Nested Loop  (cost=0.42..9.69 rows=1 width=41) (actual time=0.014..0.015 rows=1.00 loops=1)
+  Join Filter: (e.course_id = c.course_id)
+  Buffers: shared hit=5
+  ->  Index Only Scan using idx_enrollments_learner_xp on enrollments e  (cost=0.42..8.44 rows=1 width=17) (actual time=0.009..0.009 rows=1.00 loops=1)
+        Index Cond: (learner_id = 1042)
+        Heap Fetches: 1
+        Index Searches: 1
+        Buffers: shared hit=4
+  ->  Seq Scan on courses c  (cost=0.00..1.11 rows=11 width=32) (actual time=0.003..0.003 rows=1.00 loops=1)
+        Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=213
+Planning Time: 0.424 ms
+Execution Time: 0.044 ms

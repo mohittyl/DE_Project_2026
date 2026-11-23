@@ -1,0 +1,102 @@
+=== R09 run 1 ===
+Finalize GroupAggregate  (cost=26307.89..26472.47 rows=546 width=12) (actual time=29.579..31.007 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=56 read=20095
+  ->  Gather Merge  (cost=26307.89..26460.46 rows=1310 width=12) (actual time=29.576..30.998 rows=90.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=56 read=20095
+        ->  Sort  (cost=25307.87..25309.23 rows=546 width=12) (actual time=28.179..28.180 rows=30.00 loops=3)
+              Sort Key: activity_date
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=56 read=20095
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Partial HashAggregate  (cost=25277.59..25283.05 rows=546 width=12) (actual time=28.165..28.170 rows=30.00 loops=3)
+                    Group Key: activity_date
+                    Batches: 1  Memory Usage: 49kB
+                    Buffers: shared hit=40 read=20095
+                    Worker 0:  Batches: 1  Memory Usage: 49kB
+                    Worker 1:  Batches: 1  Memory Usage: 49kB
+                    ->  Parallel Bitmap Heap Scan on daily_activity  (cost=3926.00..24891.90 rows=77137 width=4) (actual time=6.955..23.605 rows=59453.00 loops=3)
+                          Recheck Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date) AND (xp > 0))
+                          Heap Blocks: exact=7183
+                          Buffers: shared hit=40 read=20095
+                          Worker 0:  Heap Blocks: exact=6005
+                          Worker 1:  Heap Blocks: exact=6417
+                          ->  Bitmap Index Scan on idx_daily_activity_date_xp  (cost=0.00..3879.72 rows=185129 width=0) (actual time=6.783..6.783 rows=178359.00 loops=1)
+                                Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+                                Index Searches: 1
+                                Buffers: shared read=490
+Planning:
+  Buffers: shared hit=145 read=20
+Planning Time: 0.455 ms
+Execution Time: 31.053 ms
+=== R09 run 2 ===
+Finalize GroupAggregate  (cost=26307.89..26472.47 rows=546 width=12) (actual time=26.428..27.745 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=57 read=20094
+  ->  Gather Merge  (cost=26307.89..26460.46 rows=1310 width=12) (actual time=26.424..27.738 rows=90.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=57 read=20094
+        ->  Sort  (cost=25307.87..25309.23 rows=546 width=12) (actual time=25.019..25.020 rows=30.00 loops=3)
+              Sort Key: activity_date
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=57 read=20094
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Partial HashAggregate  (cost=25277.59..25283.05 rows=546 width=12) (actual time=24.998..25.009 rows=30.00 loops=3)
+                    Group Key: activity_date
+                    Batches: 1  Memory Usage: 49kB
+                    Buffers: shared hit=41 read=20094
+                    Worker 0:  Batches: 1  Memory Usage: 49kB
+                    Worker 1:  Batches: 1  Memory Usage: 49kB
+                    ->  Parallel Bitmap Heap Scan on daily_activity  (cost=3926.00..24891.90 rows=77137 width=4) (actual time=5.513..20.333 rows=59453.00 loops=3)
+                          Recheck Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date) AND (xp > 0))
+                          Heap Blocks: exact=6427
+                          Buffers: shared hit=41 read=20094
+                          Worker 0:  Heap Blocks: exact=6445
+                          Worker 1:  Heap Blocks: exact=6733
+                          ->  Bitmap Index Scan on idx_daily_activity_date_xp  (cost=0.00..3879.72 rows=185129 width=0) (actual time=5.402..5.402 rows=178359.00 loops=1)
+                                Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+                                Index Searches: 1
+                                Buffers: shared read=490
+Planning:
+  Buffers: shared hit=153 read=12
+Planning Time: 0.347 ms
+Execution Time: 27.787 ms
+=== R09 run 3 ===
+Finalize GroupAggregate  (cost=26307.89..26472.47 rows=546 width=12) (actual time=26.226..27.676 rows=30.00 loops=1)
+  Group Key: activity_date
+  Buffers: shared hit=56 read=20095
+  ->  Gather Merge  (cost=26307.89..26460.46 rows=1310 width=12) (actual time=26.205..27.660 rows=90.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=56 read=20095
+        ->  Sort  (cost=25307.87..25309.23 rows=546 width=12) (actual time=24.737..24.740 rows=30.00 loops=3)
+              Sort Key: activity_date
+              Sort Method: quicksort  Memory: 25kB
+              Buffers: shared hit=56 read=20095
+              Worker 0:  Sort Method: quicksort  Memory: 25kB
+              Worker 1:  Sort Method: quicksort  Memory: 25kB
+              ->  Partial HashAggregate  (cost=25277.59..25283.05 rows=546 width=12) (actual time=24.722..24.728 rows=30.00 loops=3)
+                    Group Key: activity_date
+                    Batches: 1  Memory Usage: 49kB
+                    Buffers: shared hit=40 read=20095
+                    Worker 0:  Batches: 1  Memory Usage: 49kB
+                    Worker 1:  Batches: 1  Memory Usage: 49kB
+                    ->  Parallel Bitmap Heap Scan on daily_activity  (cost=3926.00..24891.90 rows=77137 width=4) (actual time=5.518..20.270 rows=59453.00 loops=3)
+                          Recheck Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date) AND (xp > 0))
+                          Heap Blocks: exact=6254
+                          Buffers: shared hit=40 read=20095
+                          Worker 0:  Heap Blocks: exact=6670
+                          Worker 1:  Heap Blocks: exact=6681
+                          ->  Bitmap Index Scan on idx_daily_activity_date_xp  (cost=0.00..3879.72 rows=185129 width=0) (actual time=5.470..5.473 rows=178359.00 loops=1)
+                                Index Cond: ((activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+                                Index Searches: 1
+                                Buffers: shared read=490
+Planning:
+  Buffers: shared hit=150 read=15
+Planning Time: 0.353 ms
+Execution Time: 27.720 ms

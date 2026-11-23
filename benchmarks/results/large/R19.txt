@@ -1,0 +1,339 @@
+=== R19 run 1 ===
+Sort  (cost=35576.20..35633.40 rows=22880 width=48) (actual time=1079.673..1079.678 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=345786 read=480211 written=15
+  ->  HashAggregate  (cost=33576.29..33919.49 rows=22880 width=48) (actual time=1079.562..1079.652 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=345783 read=480211 written=15
+        ->  Nested Loop Left Join  (cost=0.84..30296.01 rows=328028 width=26) (actual time=0.036..1014.046 rows=903059.00 loops=1)
+              Buffers: shared hit=345783 read=480211 written=15
+              ->  Nested Loop  (cost=0.42..99.69 rows=160 width=8) (actual time=0.020..0.237 rows=160.00 loops=1)
+                    Buffers: shared hit=21 read=42
+                    ->  Index Scan using units_course_number_unique on units u  (cost=0.14..10.24 rows=20 width=6) (actual time=0.004..0.019 rows=20.00 loops=1)
+                          Index Cond: (course_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=1
+                    ->  Index Scan using lessons_unit_number_unique on lessons l  (cost=0.28..4.39 rows=8 width=10) (actual time=0.006..0.008 rows=8.00 loops=20)
+                          Index Cond: (unit_id = u.unit_id)
+                          Index Searches: 20
+                          Buffers: shared hit=20 read=41
+              ->  Append  (cost=0.42..168.15 rows=2058 width=22) (actual time=0.005..6.138 rows=5644.12 loops=160)
+                    Buffers: shared hit=345762 read=480169 written=15
+                    ->  Index Scan using lesson_attempts_202501_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202501 a_1  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.339 rows=321.36 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19341 read=27744
+                    ->  Index Scan using lesson_attempts_202502_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202502 a_2  (cost=0.42..8.20 rows=105 width=22) (actual time=0.004..0.311 rows=288.98 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17302 read=25155
+                    ->  Index Scan using lesson_attempts_202503_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202503 a_3  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.340 rows=317.85 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19020 read=27615
+                    ->  Index Scan using lesson_attempts_202504_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202504 a_4  (cost=0.42..8.68 rows=113 width=22) (actual time=0.005..0.333 rows=310.77 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=18705 read=26932 written=2
+                    ->  Index Scan using lesson_attempts_202505_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202505 a_5  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.337 rows=318.11 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19418 read=27279
+                    ->  Index Scan using lesson_attempts_202506_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202506 a_6  (cost=0.42..8.67 rows=112 width=22) (actual time=0.005..0.327 rows=311.10 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19339 read=26279 written=7
+                    ->  Index Scan using lesson_attempts_202507_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202507 a_7  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.339 rows=320.66 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19681 read=27231
+                    ->  Index Scan using lesson_attempts_202508_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202508 a_8  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.345 rows=320.06 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19580 read=27261
+                    ->  Index Scan using lesson_attempts_202509_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202509 a_9  (cost=0.42..8.68 rows=113 width=22) (actual time=0.004..0.326 rows=308.57 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=18842 read=26439
+                    ->  Index Scan using lesson_attempts_202510_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202510 a_10  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.337 rows=320.04 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19496 read=27457
+                    ->  Index Scan using lesson_attempts_202511_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202511 a_11  (cost=0.42..8.67 rows=112 width=22) (actual time=0.004..0.323 rows=308.81 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=18912 read=26398
+                    ->  Index Scan using lesson_attempts_202512_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202512 a_12  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.335 rows=319.31 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19706 read=27188 written=6
+                    ->  Index Scan using lesson_attempts_202601_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202601 a_13  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.336 rows=318.86 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19483 read=27150
+                    ->  Index Scan using lesson_attempts_202602_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202602 a_14  (cost=0.42..8.20 rows=105 width=22) (actual time=0.004..0.301 rows=288.15 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17848 read=24494
+                    ->  Index Scan using lesson_attempts_202603_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202603 a_15  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.333 rows=318.55 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=20231 read=26522
+                    ->  Index Scan using lesson_attempts_202604_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202604 a_16  (cost=0.42..8.69 rows=113 width=22) (actual time=0.005..0.327 rows=309.60 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19625 read=25779
+                    ->  Index Scan using lesson_attempts_202605_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202605 a_17  (cost=0.42..9.02 rows=118 width=22) (actual time=0.005..0.335 rows=325.56 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19835 read=27230
+                    ->  Index Scan using lesson_attempts_202606_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202606 a_18  (cost=0.42..8.88 rows=116 width=22) (actual time=0.004..0.324 rows=317.78 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19398 read=26016
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+Planning:
+  Buffers: shared hit=4498 read=143 dirtied=10
+Planning Time: 5.628 ms
+Execution Time: 1079.799 ms
+=== R19 run 2 ===
+Sort  (cost=35576.20..35633.40 rows=22880 width=48) (actual time=1074.418..1074.423 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=349255 read=476742
+  ->  HashAggregate  (cost=33576.29..33919.49 rows=22880 width=48) (actual time=1074.305..1074.393 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=349252 read=476742
+        ->  Nested Loop Left Join  (cost=0.84..30296.01 rows=328028 width=26) (actual time=0.029..1007.362 rows=903059.00 loops=1)
+              Buffers: shared hit=349252 read=476742
+              ->  Nested Loop  (cost=0.42..99.69 rows=160 width=8) (actual time=0.013..0.234 rows=160.00 loops=1)
+                    Buffers: shared hit=21 read=42
+                    ->  Index Scan using units_course_number_unique on units u  (cost=0.14..10.24 rows=20 width=6) (actual time=0.004..0.020 rows=20.00 loops=1)
+                          Index Cond: (course_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=1
+                    ->  Index Scan using lessons_unit_number_unique on lessons l  (cost=0.28..4.39 rows=8 width=10) (actual time=0.006..0.008 rows=8.00 loops=20)
+                          Index Cond: (unit_id = u.unit_id)
+                          Index Searches: 20
+                          Buffers: shared hit=20 read=41
+              ->  Append  (cost=0.42..168.15 rows=2058 width=22) (actual time=0.005..6.096 rows=5644.12 loops=160)
+                    Buffers: shared hit=349231 read=476700
+                    ->  Index Scan using lesson_attempts_202501_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202501 a_1  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.336 rows=321.36 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=20073 read=27012
+                    ->  Index Scan using lesson_attempts_202502_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202502 a_2  (cost=0.42..8.20 rows=105 width=22) (actual time=0.004..0.304 rows=288.98 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17918 read=24539
+                    ->  Index Scan using lesson_attempts_202503_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202503 a_3  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.333 rows=317.85 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19673 read=26962
+                    ->  Index Scan using lesson_attempts_202504_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202504 a_4  (cost=0.42..8.68 rows=113 width=22) (actual time=0.005..0.328 rows=310.77 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19251 read=26386
+                    ->  Index Scan using lesson_attempts_202505_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202505 a_5  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.332 rows=318.11 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19788 read=26909
+                    ->  Index Scan using lesson_attempts_202506_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202506 a_6  (cost=0.42..8.67 rows=112 width=22) (actual time=0.004..0.327 rows=311.10 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19603 read=26015
+                    ->  Index Scan using lesson_attempts_202507_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202507 a_7  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.337 rows=320.66 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19907 read=27005
+                    ->  Index Scan using lesson_attempts_202508_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202508 a_8  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.337 rows=320.06 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19816 read=27025
+                    ->  Index Scan using lesson_attempts_202509_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202509 a_9  (cost=0.42..8.68 rows=113 width=22) (actual time=0.004..0.322 rows=308.57 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19056 read=26225
+                    ->  Index Scan using lesson_attempts_202510_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202510 a_10  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.338 rows=320.04 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19692 read=27261
+                    ->  Index Scan using lesson_attempts_202511_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202511 a_11  (cost=0.42..8.67 rows=112 width=22) (actual time=0.004..0.321 rows=308.81 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19106 read=26204
+                    ->  Index Scan using lesson_attempts_202512_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202512 a_12  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.333 rows=319.31 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19911 read=26983
+                    ->  Index Scan using lesson_attempts_202601_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202601 a_13  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.337 rows=318.86 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19560 read=27073
+                    ->  Index Scan using lesson_attempts_202602_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202602 a_14  (cost=0.42..8.20 rows=105 width=22) (actual time=0.004..0.301 rows=288.15 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17960 read=24382
+                    ->  Index Scan using lesson_attempts_202603_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202603 a_15  (cost=0.42..8.91 rows=116 width=22) (actual time=0.004..0.336 rows=318.55 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19823 read=26930
+                    ->  Index Scan using lesson_attempts_202604_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202604 a_16  (cost=0.42..8.69 rows=113 width=22) (actual time=0.005..0.326 rows=309.60 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19224 read=26180
+                    ->  Index Scan using lesson_attempts_202605_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202605 a_17  (cost=0.42..9.02 rows=118 width=22) (actual time=0.004..0.332 rows=325.56 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19852 read=27213
+                    ->  Index Scan using lesson_attempts_202606_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202606 a_18  (cost=0.42..8.88 rows=116 width=22) (actual time=0.004..0.325 rows=317.78 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19018 read=26396
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+Planning:
+  Buffers: shared hit=4309 read=330
+Planning Time: 6.083 ms
+Execution Time: 1074.552 ms
+=== R19 run 3 ===
+Sort  (cost=35576.20..35633.40 rows=22880 width=48) (actual time=1172.143..1172.148 rows=160.00 loops=1)
+  Sort Key: u.unit_no, l.lesson_no
+  Sort Method: quicksort  Memory: 31kB
+  Buffers: shared hit=349244 read=476753
+  ->  HashAggregate  (cost=33576.29..33919.49 rows=22880 width=48) (actual time=1172.026..1172.120 rows=160.00 loops=1)
+        Group Key: u.unit_no, l.lesson_id
+        Batches: 1  Memory Usage: 561kB
+        Buffers: shared hit=349241 read=476753
+        ->  Nested Loop Left Join  (cost=0.84..30296.01 rows=328028 width=26) (actual time=0.029..1102.937 rows=903059.00 loops=1)
+              Buffers: shared hit=349241 read=476753
+              ->  Nested Loop  (cost=0.42..99.69 rows=160 width=8) (actual time=0.011..0.300 rows=160.00 loops=1)
+                    Buffers: shared hit=21 read=42
+                    ->  Index Scan using units_course_number_unique on units u  (cost=0.14..10.24 rows=20 width=6) (actual time=0.004..0.019 rows=20.00 loops=1)
+                          Index Cond: (course_id = 1)
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=1
+                    ->  Index Scan using lessons_unit_number_unique on lessons l  (cost=0.28..4.39 rows=8 width=10) (actual time=0.007..0.011 rows=8.00 loops=20)
+                          Index Cond: (unit_id = u.unit_id)
+                          Index Searches: 20
+                          Buffers: shared hit=20 read=41
+              ->  Append  (cost=0.42..168.15 rows=2058 width=22) (actual time=0.006..6.686 rows=5644.12 loops=160)
+                    Buffers: shared hit=349220 read=476711
+                    ->  Index Scan using lesson_attempts_202501_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202501 a_1  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.391 rows=321.36 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=20069 read=27016
+                    ->  Index Scan using lesson_attempts_202502_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202502 a_2  (cost=0.42..8.20 rows=105 width=22) (actual time=0.005..0.337 rows=288.98 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17916 read=24541
+                    ->  Index Scan using lesson_attempts_202503_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202503 a_3  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.361 rows=317.85 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19673 read=26962
+                    ->  Index Scan using lesson_attempts_202504_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202504 a_4  (cost=0.42..8.68 rows=113 width=22) (actual time=0.006..0.371 rows=310.77 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19248 read=26389
+                    ->  Index Scan using lesson_attempts_202505_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202505 a_5  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.352 rows=318.11 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19788 read=26909
+                    ->  Index Scan using lesson_attempts_202506_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202506 a_6  (cost=0.42..8.67 rows=112 width=22) (actual time=0.005..0.366 rows=311.10 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19603 read=26015
+                    ->  Index Scan using lesson_attempts_202507_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202507 a_7  (cost=0.42..8.91 rows=116 width=22) (actual time=0.006..0.367 rows=320.66 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19906 read=27006
+                    ->  Index Scan using lesson_attempts_202508_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202508 a_8  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.358 rows=320.06 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19816 read=27025
+                    ->  Index Scan using lesson_attempts_202509_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202509 a_9  (cost=0.42..8.68 rows=113 width=22) (actual time=0.005..0.342 rows=308.57 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19057 read=26224
+                    ->  Index Scan using lesson_attempts_202510_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202510 a_10  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.367 rows=320.04 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19691 read=27262
+                    ->  Index Scan using lesson_attempts_202511_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202511 a_11  (cost=0.42..8.67 rows=112 width=22) (actual time=0.005..0.348 rows=308.81 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19104 read=26206
+                    ->  Index Scan using lesson_attempts_202512_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202512 a_12  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.353 rows=319.31 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19909 read=26985
+                    ->  Index Scan using lesson_attempts_202601_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202601 a_13  (cost=0.42..8.91 rows=116 width=22) (actual time=0.006..0.382 rows=318.86 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19559 read=27074
+                    ->  Index Scan using lesson_attempts_202602_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202602 a_14  (cost=0.42..8.20 rows=105 width=22) (actual time=0.006..0.331 rows=288.15 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=17961 read=24381
+                    ->  Index Scan using lesson_attempts_202603_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202603 a_15  (cost=0.42..8.91 rows=116 width=22) (actual time=0.005..0.360 rows=318.55 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19823 read=26930
+                    ->  Index Scan using lesson_attempts_202604_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202604 a_16  (cost=0.42..8.69 rows=113 width=22) (actual time=0.005..0.382 rows=309.60 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19225 read=26179
+                    ->  Index Scan using lesson_attempts_202605_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202605 a_17  (cost=0.42..9.02 rows=118 width=22) (actual time=0.005..0.371 rows=325.56 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19853 read=27212
+                    ->  Index Scan using lesson_attempts_202606_lesson_id_mistakes_completed_at_hear_idx on lesson_attempts_202606 a_18  (cost=0.42..8.88 rows=116 width=22) (actual time=0.005..0.349 rows=317.78 loops=160)
+                          Index Cond: (lesson_id = l.lesson_id)
+                          Index Searches: 160
+                          Buffers: shared hit=19019 read=26395
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=22) (actual time=0.000..0.000 rows=0.00 loops=160)
+                          Filter: (lesson_id = l.lesson_id)
+Planning:
+  Buffers: shared hit=4309 read=330
+Planning Time: 5.950 ms
+Execution Time: 1172.287 ms

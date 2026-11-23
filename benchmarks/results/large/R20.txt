@@ -1,0 +1,57 @@
+=== R20 run 1 ===
+WindowAgg  (cost=26142.38..33164.55 rows=199950 width=44) (actual time=31.157..42.036 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((lesson_attempts.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=922 read=980, temp read=399 written=401
+  ->  GroupAggregate  (cost=26142.34..30165.30 rows=199950 width=12) (actual time=30.753..42.014 rows=30.00 loops=1)
+        Group Key: ((lesson_attempts.started_at)::date)
+        Buffers: shared hit=922 read=980, temp read=399 written=401
+        ->  Sort  (cost=26142.34..26650.20 rows=203144 width=6) (actual time=30.261..35.920 rows=203144.00 loops=1)
+              Sort Key: ((lesson_attempts.started_at)::date)
+              Sort Method: external merge  Disk: 3192kB
+              Buffers: shared hit=922 read=980, temp read=399 written=401
+              ->  Seq Scan on lesson_attempts_202606 lesson_attempts  (cost=0.00..5454.02 rows=203144 width=6) (actual time=0.006..20.126 rows=203144.00 loops=1)
+                    Filter: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=919 read=980
+Planning:
+  Buffers: shared hit=461 read=87 dirtied=1
+Planning Time: 0.958 ms
+Execution Time: 42.790 ms
+=== R20 run 2 ===
+WindowAgg  (cost=26142.38..33164.55 rows=199950 width=44) (actual time=28.894..39.786 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((lesson_attempts.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1902, temp read=399 written=401
+  ->  GroupAggregate  (cost=26142.34..30165.30 rows=199950 width=12) (actual time=28.490..39.754 rows=30.00 loops=1)
+        Group Key: ((lesson_attempts.started_at)::date)
+        Buffers: shared hit=1902, temp read=399 written=401
+        ->  Sort  (cost=26142.34..26650.20 rows=203144 width=6) (actual time=28.102..33.713 rows=203144.00 loops=1)
+              Sort Key: ((lesson_attempts.started_at)::date)
+              Sort Method: external merge  Disk: 3192kB
+              Buffers: shared hit=1902, temp read=399 written=401
+              ->  Seq Scan on lesson_attempts_202606 lesson_attempts  (cost=0.00..5454.02 rows=203144 width=6) (actual time=0.007..18.014 rows=203144.00 loops=1)
+                    Filter: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=1899
+Planning:
+  Buffers: shared hit=548
+Planning Time: 0.589 ms
+Execution Time: 40.543 ms
+=== R20 run 3 ===
+WindowAgg  (cost=26142.38..33164.55 rows=199950 width=44) (actual time=28.359..39.220 rows=30.00 loops=1)
+  Window: w1 AS (ORDER BY ((lesson_attempts.started_at)::date))
+  Storage: Memory  Maximum Storage: 17kB
+  Buffers: shared hit=1902, temp read=399 written=401
+  ->  GroupAggregate  (cost=26142.34..30165.30 rows=199950 width=12) (actual time=27.975..39.202 rows=30.00 loops=1)
+        Group Key: ((lesson_attempts.started_at)::date)
+        Buffers: shared hit=1902, temp read=399 written=401
+        ->  Sort  (cost=26142.34..26650.20 rows=203144 width=6) (actual time=27.595..33.175 rows=203144.00 loops=1)
+              Sort Key: ((lesson_attempts.started_at)::date)
+              Sort Method: external merge  Disk: 3192kB
+              Buffers: shared hit=1902, temp read=399 written=401
+              ->  Seq Scan on lesson_attempts_202606 lesson_attempts  (cost=0.00..5454.02 rows=203144 width=6) (actual time=0.006..18.251 rows=203144.00 loops=1)
+                    Filter: ((started_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=1899
+Planning:
+  Buffers: shared hit=548
+Planning Time: 0.625 ms
+Execution Time: 39.946 ms

@@ -1,0 +1,45 @@
+=== R13 run 1 ===
+Merge Anti Join  (cost=279.66..37972.75 rows=541356 width=22) (actual time=18.869..119.959 rows=485879.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=180183 read=9384
+  ->  Index Scan using learners_pkey on learners l  (cost=0.42..23163.43 rows=600000 width=22) (actual time=0.003..30.553 rows=600000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=7668 read=1638
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.42..37331.67 rows=600000 width=4) (actual time=0.117..58.247 rows=179993.00 loops=1)
+        Heap Fetches: 179993
+        Index Searches: 1
+        Buffers: shared hit=172515 read=7746
+Planning:
+  Buffers: shared hit=287 read=3
+Planning Time: 1.288 ms
+Execution Time: 128.458 ms
+=== R13 run 2 ===
+Merge Anti Join  (cost=279.66..37972.75 rows=541356 width=22) (actual time=8.863..101.839 rows=485879.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=189542 read=25
+  ->  Index Scan using learners_pkey on learners l  (cost=0.42..23163.43 rows=600000 width=22) (actual time=0.002..27.460 rows=600000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=9302 read=4
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.42..37331.67 rows=600000 width=4) (actual time=0.010..43.345 rows=179993.00 loops=1)
+        Heap Fetches: 179993
+        Index Searches: 1
+        Buffers: shared hit=180240 read=21
+Planning:
+  Buffers: shared hit=288 read=2
+Planning Time: 0.409 ms
+Execution Time: 110.299 ms
+=== R13 run 3 ===
+Merge Anti Join  (cost=279.66..37972.75 rows=541356 width=22) (actual time=8.980..102.294 rows=485879.00 loops=1)
+  Merge Cond: (l.learner_id = r.referred_by)
+  Buffers: shared hit=189567
+  ->  Index Scan using learners_pkey on learners l  (cost=0.42..23163.43 rows=600000 width=22) (actual time=0.002..27.412 rows=600000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=9306
+  ->  Index Only Scan using idx_learners_referrer on learners r  (cost=0.42..37331.67 rows=600000 width=4) (actual time=0.007..43.753 rows=179993.00 loops=1)
+        Heap Fetches: 179993
+        Index Searches: 1
+        Buffers: shared hit=180261
+Planning:
+  Buffers: shared hit=290
+Planning Time: 0.430 ms
+Execution Time: 110.758 ms

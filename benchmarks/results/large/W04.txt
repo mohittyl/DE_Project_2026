@@ -1,0 +1,99 @@
+=== W04 run 1 ===
+Update on league_memberships lm  (cost=6588.85..22102.13 rows=0 width=0) (actual time=540.897..540.898 rows=0.00 loops=1)
+  Buffers: shared hit=190962 read=6121 dirtied=6095 written=218
+  ->  Hash Join  (cost=6588.85..22102.13 rows=2028 width=82) (actual time=12.254..66.406 rows=13294.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=4318 read=4595 written=1
+        ->  Seq Scan on league_memberships lm  (cost=0.00..10012.36 rows=546036 width=14) (actual time=0.009..20.769 rows=546036.00 loops=1)
+              Buffers: shared hit=4312 read=240 written=1
+        ->  Hash  (cost=6387.64..6387.64 rows=13414 width=56) (actual time=12.221..12.222 rows=13294.00 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 1271kB
+              Buffers: shared hit=6 read=4355
+              ->  Subquery Scan on r  (cost=5951.69..6387.64 rows=13414 width=56) (actual time=9.055..11.411 rows=13294.00 loops=1)
+                    Buffers: shared hit=6 read=4355
+                    ->  WindowAgg  (cost=5951.69..6253.50 rows=13414 width=24) (actual time=9.045..10.546 rows=13294.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=6 read=4355
+                          ->  Sort  (cost=5951.69..5985.22 rows=13414 width=16) (actual time=9.038..9.290 rows=13294.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 800kB
+                                Buffers: shared hit=6 read=4355
+                                ->  Bitmap Heap Scan on league_memberships  (cost=312.38..5032.06 rows=13414 width=16) (actual time=1.978..7.469 rows=13294.00 loops=1)
+                                      Recheck Cond: (week_start = '2026-06-29'::date)
+                                      Heap Blocks: exact=4304
+                                      Buffers: shared hit=3 read=4355
+                                      ->  Bitmap Index Scan on idx_league_week_cohort_xp  (cost=0.00..309.03 rows=13414 width=0) (actual time=1.696..1.696 rows=13294.00 loops=1)
+                                            Index Cond: (week_start = '2026-06-29'::date)
+                                            Index Searches: 1
+                                            Buffers: shared read=54
+Planning:
+  Buffers: shared hit=244 read=11
+Planning Time: 1.121 ms
+Execution Time: 540.972 ms
+=== W04 run 2 ===
+Update on league_memberships lm  (cost=6738.07..22598.97 rows=0 width=0) (actual time=160.318..160.320 rows=0.00 loops=1)
+  Buffers: shared hit=210169 read=146 dirtied=169 written=168
+  ->  Hash Join  (cost=6738.07..22598.97 rows=2074 width=82) (actual time=13.671..58.904 rows=13294.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=9031 read=146 dirtied=1
+        ->  Seq Scan on league_memberships lm  (cost=0.00..10236.71 rows=558271 width=14) (actual time=0.018..20.598 rows=546036.00 loops=1)
+              Buffers: shared hit=4508 read=146
+        ->  Hash  (cost=6532.35..6532.35 rows=13715 width=56) (actual time=13.630..13.631 rows=13294.00 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 1271kB
+              Buffers: shared hit=4523 dirtied=1
+              ->  Subquery Scan on r  (cost=6086.61..6532.35 rows=13715 width=56) (actual time=10.614..12.853 rows=13294.00 loops=1)
+                    Buffers: shared hit=4523 dirtied=1
+                    ->  WindowAgg  (cost=6086.61..6395.20 rows=13715 width=24) (actual time=10.610..12.048 rows=13294.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=4523 dirtied=1
+                          ->  Sort  (cost=6086.61..6120.90 rows=13715 width=16) (actual time=10.607..10.849 rows=13294.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 800kB
+                                Buffers: shared hit=4523 dirtied=1
+                                ->  Bitmap Heap Scan on league_memberships  (cost=318.72..5144.15 rows=13715 width=16) (actual time=0.980..9.114 rows=13294.00 loops=1)
+                                      Recheck Cond: (week_start = '2026-06-29'::date)
+                                      Heap Blocks: exact=4415
+                                      Buffers: shared hit=4520 dirtied=1
+                                      ->  Bitmap Index Scan on idx_league_week_cohort_xp  (cost=0.00..315.29 rows=13715 width=0) (actual time=0.723..0.723 rows=26588.00 loops=1)
+                                            Index Cond: (week_start = '2026-06-29'::date)
+                                            Index Searches: 1
+                                            Buffers: shared hit=105
+Planning:
+  Buffers: shared hit=255
+Planning Time: 0.333 ms
+Execution Time: 160.387 ms
+=== W04 run 3 ===
+Update on league_memberships lm  (cost=6896.09..23135.27 rows=0 width=0) (actual time=131.537..131.538 rows=0.00 loops=1)
+  Buffers: shared hit=210602 read=52 dirtied=169 written=168
+  ->  Hash Join  (cost=6896.09..23135.27 rows=2123 width=82) (actual time=14.178..58.685 rows=13294.00 loops=1)
+        Hash Cond: ((lm.learner_id = r.learner_id) AND (lm.week_start = r.week_start))
+        Buffers: shared hit=9337 read=52
+        ->  Seq Scan on league_memberships lm  (cost=0.00..10480.86 rows=571586 width=14) (actual time=0.004..20.281 rows=546036.00 loops=1)
+              Buffers: shared hit=4713 read=52
+        ->  Hash  (cost=6685.46..6685.46 rows=14042 width=56) (actual time=14.151..14.152 rows=13294.00 loops=1)
+              Buckets: 16384  Batches: 1  Memory Usage: 1271kB
+              Buffers: shared hit=4624
+              ->  Subquery Scan on r  (cost=6229.09..6685.46 rows=14042 width=56) (actual time=11.092..13.367 rows=13294.00 loops=1)
+                    Buffers: shared hit=4624
+                    ->  WindowAgg  (cost=6229.09..6545.04 rows=14042 width=24) (actual time=11.083..12.556 rows=13294.00 loops=1)
+                          Window: w1 AS (PARTITION BY league_memberships.cohort_id ORDER BY league_memberships.weekly_xp, league_memberships.learner_id ROWS UNBOUNDED PRECEDING)
+                          Storage: Memory  Maximum Storage: 17kB
+                          Buffers: shared hit=4624
+                          ->  Sort  (cost=6229.09..6264.20 rows=14042 width=16) (actual time=11.080..11.324 rows=13294.00 loops=1)
+                                Sort Key: league_memberships.cohort_id, league_memberships.weekly_xp DESC, league_memberships.learner_id
+                                Sort Method: quicksort  Memory: 800kB
+                                Buffers: shared hit=4624
+                                ->  Bitmap Heap Scan on league_memberships  (cost=321.25..5261.78 rows=14042 width=16) (actual time=1.052..9.548 rows=13294.00 loops=1)
+                                      Recheck Cond: (week_start = '2026-06-29'::date)
+                                      Heap Blocks: exact=4516
+                                      Buffers: shared hit=4621
+                                      ->  Bitmap Index Scan on idx_league_week_cohort_xp  (cost=0.00..317.74 rows=14042 width=0) (actual time=0.796..0.796 rows=29808.00 loops=1)
+                                            Index Cond: (week_start = '2026-06-29'::date)
+                                            Index Searches: 1
+                                            Buffers: shared hit=105
+Planning:
+  Buffers: shared hit=255
+Planning Time: 0.349 ms
+Execution Time: 131.606 ms

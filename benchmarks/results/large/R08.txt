@@ -1,0 +1,243 @@
+=== R08 run 1 ===
+Sort  (cost=78763.69..78763.70 rows=4 width=46) (actual time=272.931..273.752 rows=4.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.completed_at IS NULL)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4546 read=29249
+  ->  Finalize GroupAggregate  (cost=78762.32..78763.65 rows=4 width=46) (actual time=272.921..273.745 rows=4.00 loops=1)
+        Group Key: l.lesson_type
+        Buffers: shared hit=4543 read=29249
+        ->  Gather Merge  (cost=78762.32..78763.49 rows=10 width=22) (actual time=272.908..273.733 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=4543 read=29249
+              ->  Sort  (cost=77762.30..77762.31 rows=4 width=22) (actual time=269.363..269.367 rows=4.00 loops=3)
+                    Sort Key: l.lesson_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=4543 read=29249
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=77762.22..77762.26 rows=4 width=22) (actual time=269.342..269.347 rows=4.00 loops=3)
+                          Group Key: l.lesson_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=4527 read=29249
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=53.60..66486.26 rows=1503461 width=14) (actual time=0.243..183.752 rows=1202766.67 loops=3)
+                                Hash Cond: (a.lesson_id = l.lesson_id)
+                                Buffers: shared hit=4527 read=29249
+                                ->  Parallel Append  (cost=0.00..62476.57 rows=1503462 width=12) (actual time=0.055..97.079 rows=1202766.67 loops=3)
+                                      Buffers: shared hit=4496 read=29238
+                                      ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=12) (actual time=0.017..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=12) (actual time=0.021..0.021 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=12) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Parallel Seq Scan on lesson_attempts_202605 a_17  (cost=0.00..3155.85 rows=121885 width=12) (actual time=0.007..11.585 rows=207205.00 loops=1)
+                                            Buffers: shared hit=836 read=1101
+                                      ->  Parallel Seq Scan on lesson_attempts_202501 a_1  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.025..10.299 rows=204396.00 loops=1)
+                                            Buffers: shared hit=699 read=1212
+                                      ->  Parallel Seq Scan on lesson_attempts_202503 a_3  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.065..9.455 rows=204396.00 loops=1)
+                                            Buffers: shared hit=520 read=1391
+                                      ->  Parallel Seq Scan on lesson_attempts_202505 a_5  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.040..10.145 rows=204396.00 loops=1)
+                                            Buffers: shared hit=427 read=1484
+                                      ->  Parallel Seq Scan on lesson_attempts_202507 a_7  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.072..8.818 rows=204396.00 loops=1)
+                                            Buffers: shared hit=179 read=1732
+                                      ->  Parallel Seq Scan on lesson_attempts_202510 a_10  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.053..9.650 rows=204396.00 loops=1)
+                                            Buffers: shared hit=124 read=1787
+                                      ->  Parallel Seq Scan on lesson_attempts_202512 a_12  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.059..8.313 rows=204396.00 loops=1)
+                                            Buffers: shared hit=52 read=1859
+                                      ->  Parallel Seq Scan on lesson_attempts_202601 a_13  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.054..9.324 rows=204396.00 loops=1)
+                                            Buffers: shared hit=21 read=1890
+                                      ->  Parallel Seq Scan on lesson_attempts_202508 a_8  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.056..8.956 rows=204395.00 loops=1)
+                                            Buffers: shared hit=4 read=1907
+                                      ->  Parallel Seq Scan on lesson_attempts_202603 a_15  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.058..8.899 rows=204395.00 loops=1)
+                                            Buffers: shared hit=6 read=1905
+                                      ->  Parallel Seq Scan on lesson_attempts_202606 a_18  (cost=0.00..3093.96 rows=119496 width=12) (actual time=0.061..8.991 rows=203144.00 loops=1)
+                                            Buffers: shared hit=1 read=1898
+                                      ->  Parallel Seq Scan on lesson_attempts_202604 a_16  (cost=0.00..3015.42 rows=116442 width=12) (actual time=0.049..3.039 rows=65983.67 loops=3)
+                                            Buffers: shared read=1851
+                                      ->  Parallel Seq Scan on lesson_attempts_202504 a_4  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.018..10.433 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202506 a_6  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.021..9.851 rows=197802.00 loops=1)
+                                            Buffers: shared hit=8 read=1841
+                                      ->  Parallel Seq Scan on lesson_attempts_202509 a_9  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.019..9.262 rows=197802.00 loops=1)
+                                            Buffers: shared hit=50 read=1799
+                                      ->  Parallel Seq Scan on lesson_attempts_202511 a_11  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.018..9.682 rows=197802.00 loops=1)
+                                            Buffers: shared hit=304 read=1545
+                                      ->  Parallel Seq Scan on lesson_attempts_202502 a_2  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.009..9.314 rows=184615.00 loops=1)
+                                            Buffers: shared hit=508 read=1218
+                                      ->  Parallel Seq Scan on lesson_attempts_202602 a_14  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.008..9.208 rows=184615.00 loops=1)
+                                            Buffers: shared hit=757 read=969
+                                ->  Hash  (cost=31.60..31.60 rows=1760 width=10) (actual time=0.184..0.185 rows=1760.00 loops=3)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 94kB
+                                      Buffers: shared hit=31 read=11
+                                      ->  Seq Scan on lessons l  (cost=0.00..31.60 rows=1760 width=10) (actual time=0.015..0.094 rows=1760.00 loops=3)
+                                            Buffers: shared hit=31 read=11
+Planning:
+  Buffers: shared hit=4158 read=322
+Planning Time: 6.218 ms
+Execution Time: 273.860 ms
+=== R08 run 2 ===
+Sort  (cost=78763.69..78763.70 rows=4 width=46) (actual time=273.137..274.029 rows=4.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.completed_at IS NULL)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=56 read=33739
+  ->  Finalize GroupAggregate  (cost=78762.32..78763.65 rows=4 width=46) (actual time=273.128..274.022 rows=4.00 loops=1)
+        Group Key: l.lesson_type
+        Buffers: shared hit=53 read=33739
+        ->  Gather Merge  (cost=78762.32..78763.49 rows=10 width=22) (actual time=273.117..274.012 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=53 read=33739
+              ->  Sort  (cost=77762.30..77762.31 rows=4 width=22) (actual time=270.793..270.796 rows=4.00 loops=3)
+                    Sort Key: l.lesson_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=53 read=33739
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=77762.22..77762.26 rows=4 width=22) (actual time=270.769..270.773 rows=4.00 loops=3)
+                          Group Key: l.lesson_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=37 read=33739
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=53.60..66486.26 rows=1503461 width=14) (actual time=0.291..182.685 rows=1202766.67 loops=3)
+                                Hash Cond: (a.lesson_id = l.lesson_id)
+                                Buffers: shared hit=37 read=33739
+                                ->  Parallel Append  (cost=0.00..62476.57 rows=1503462 width=12) (actual time=0.074..97.239 rows=1202766.67 loops=3)
+                                      Buffers: shared hit=7 read=33727
+                                      ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=12) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=12) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Parallel Seq Scan on lesson_attempts_202605 a_17  (cost=0.00..3155.85 rows=121885 width=12) (actual time=0.038..9.860 rows=207205.00 loops=1)
+                                            Buffers: shared hit=3 read=1934
+                                      ->  Parallel Seq Scan on lesson_attempts_202501 a_1  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.033..8.837 rows=204396.00 loops=1)
+                                            Buffers: shared hit=1 read=1910
+                                      ->  Parallel Seq Scan on lesson_attempts_202503 a_3  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.061..9.948 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202505 a_5  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.042..9.594 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202507 a_7  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.071..10.175 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202510 a_10  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.038..9.401 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202512 a_12  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.059..9.193 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202601 a_13  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.044..9.966 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202508 a_8  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.065..11.001 rows=204395.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202603 a_15  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.043..10.873 rows=204395.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202606 a_18  (cost=0.00..3093.96 rows=119496 width=12) (actual time=0.053..3.105 rows=67714.67 loops=3)
+                                            Buffers: shared read=1899
+                                      ->  Parallel Seq Scan on lesson_attempts_202604 a_16  (cost=0.00..3015.42 rows=116442 width=12) (actual time=0.059..4.750 rows=98975.50 loops=2)
+                                            Buffers: shared read=1851
+                                      ->  Parallel Seq Scan on lesson_attempts_202504 a_4  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.037..9.426 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202506 a_6  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.016..9.670 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202509 a_9  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.017..8.011 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202511 a_11  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.016..8.308 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202502 a_2  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.019..8.708 rows=184615.00 loops=1)
+                                            Buffers: shared read=1726
+                                      ->  Parallel Seq Scan on lesson_attempts_202602 a_14  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.029..8.966 rows=184615.00 loops=1)
+                                            Buffers: shared hit=3 read=1723
+                                ->  Hash  (cost=31.60..31.60 rows=1760 width=10) (actual time=0.201..0.202 rows=1760.00 loops=3)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 94kB
+                                      Buffers: shared hit=30 read=12
+                                      ->  Seq Scan on lessons l  (cost=0.00..31.60 rows=1760 width=10) (actual time=0.015..0.101 rows=1760.00 loops=3)
+                                            Buffers: shared hit=30 read=12
+Planning:
+  Buffers: shared hit=4241 read=239
+Planning Time: 5.796 ms
+Execution Time: 274.102 ms
+=== R08 run 3 ===
+Sort  (cost=78763.69..78763.70 rows=4 width=46) (actual time=259.916..261.163 rows=4.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE (a.completed_at IS NULL)))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=49 read=33746
+  ->  Finalize GroupAggregate  (cost=78762.32..78763.65 rows=4 width=46) (actual time=259.909..261.157 rows=4.00 loops=1)
+        Group Key: l.lesson_type
+        Buffers: shared hit=46 read=33746
+        ->  Gather Merge  (cost=78762.32..78763.49 rows=10 width=22) (actual time=259.893..261.143 rows=12.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=46 read=33746
+              ->  Sort  (cost=77762.30..77762.31 rows=4 width=22) (actual time=257.294..257.298 rows=4.00 loops=3)
+                    Sort Key: l.lesson_type
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=46 read=33746
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=77762.22..77762.26 rows=4 width=22) (actual time=257.275..257.280 rows=4.00 loops=3)
+                          Group Key: l.lesson_type
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=30 read=33746
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Hash Join  (cost=53.60..66486.26 rows=1503461 width=14) (actual time=0.281..176.479 rows=1202766.67 loops=3)
+                                Hash Cond: (a.lesson_id = l.lesson_id)
+                                Buffers: shared hit=30 read=33746
+                                ->  Parallel Append  (cost=0.00..62476.57 rows=1503462 width=12) (actual time=0.082..94.906 rows=1202766.67 loops=3)
+                                      Buffers: shared read=33734
+                                      ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=12) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=12) (actual time=0.023..0.023 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=12) (actual time=0.016..0.016 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=12) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=12) (actual time=0.015..0.015 rows=0.00 loops=1)
+                                      ->  Parallel Seq Scan on lesson_attempts_202605 a_17  (cost=0.00..3155.85 rows=121885 width=12) (actual time=0.038..9.833 rows=207205.00 loops=1)
+                                            Buffers: shared read=1937
+                                      ->  Parallel Seq Scan on lesson_attempts_202501 a_1  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.049..9.387 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202503 a_3  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.063..10.276 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202505 a_5  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.047..9.696 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202507 a_7  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.204..9.539 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202510 a_10  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.069..9.703 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202512 a_12  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.064..8.556 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202601 a_13  (cost=0.00..3113.33 rows=120233 width=12) (actual time=0.048..9.334 rows=204396.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202508 a_8  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.065..8.947 rows=204395.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202603 a_15  (cost=0.00..3113.32 rows=120232 width=12) (actual time=0.047..9.231 rows=204395.00 loops=1)
+                                            Buffers: shared read=1911
+                                      ->  Parallel Seq Scan on lesson_attempts_202606 a_18  (cost=0.00..3093.96 rows=119496 width=12) (actual time=0.055..3.235 rows=67714.67 loops=3)
+                                            Buffers: shared read=1899
+                                      ->  Parallel Seq Scan on lesson_attempts_202604 a_16  (cost=0.00..3015.42 rows=116442 width=12) (actual time=0.035..4.416 rows=98975.50 loops=2)
+                                            Buffers: shared read=1851
+                                      ->  Parallel Seq Scan on lesson_attempts_202504 a_4  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.018..8.037 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202506 a_6  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.021..8.416 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202509 a_9  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.060..8.406 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202511 a_11  (cost=0.00..3012.54 rows=116354 width=12) (actual time=0.022..9.241 rows=197802.00 loops=1)
+                                            Buffers: shared read=1849
+                                      ->  Parallel Seq Scan on lesson_attempts_202502 a_2  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.027..8.349 rows=184615.00 loops=1)
+                                            Buffers: shared read=1726
+                                      ->  Parallel Seq Scan on lesson_attempts_202602 a_14  (cost=0.00..2811.97 rows=108597 width=12) (actual time=0.030..8.446 rows=184615.00 loops=1)
+                                            Buffers: shared read=1726
+                                ->  Hash  (cost=31.60..31.60 rows=1760 width=10) (actual time=0.193..0.193 rows=1760.00 loops=3)
+                                      Buckets: 2048  Batches: 1  Memory Usage: 94kB
+                                      Buffers: shared hit=30 read=12
+                                      ->  Seq Scan on lessons l  (cost=0.00..31.60 rows=1760 width=10) (actual time=0.016..0.098 rows=1760.00 loops=3)
+                                            Buffers: shared hit=30 read=12
+Planning:
+  Buffers: shared hit=4241 read=239
+Planning Time: 7.556 ms
+Execution Time: 261.254 ms

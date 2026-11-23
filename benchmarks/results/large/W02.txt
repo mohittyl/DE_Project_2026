@@ -1,0 +1,399 @@
+=== W02 run 1 ===
+Update on lesson_attempts  (cost=12.10..165.77 rows=0 width=0) (actual time=7.109..7.113 rows=0.00 loops=1)
+  Update on lesson_attempts_202501 lesson_attempts_1
+  Update on lesson_attempts_202502 lesson_attempts_2
+  Update on lesson_attempts_202503 lesson_attempts_3
+  Update on lesson_attempts_202504 lesson_attempts_4
+  Update on lesson_attempts_202505 lesson_attempts_5
+  Update on lesson_attempts_202506 lesson_attempts_6
+  Update on lesson_attempts_202507 lesson_attempts_7
+  Update on lesson_attempts_202508 lesson_attempts_8
+  Update on lesson_attempts_202509 lesson_attempts_9
+  Update on lesson_attempts_202510 lesson_attempts_10
+  Update on lesson_attempts_202511 lesson_attempts_11
+  Update on lesson_attempts_202512 lesson_attempts_12
+  Update on lesson_attempts_202601 lesson_attempts_13
+  Update on lesson_attempts_202602 lesson_attempts_14
+  Update on lesson_attempts_202603 lesson_attempts_15
+  Update on lesson_attempts_202604 lesson_attempts_16
+  Update on lesson_attempts_202605 lesson_attempts_17
+  Update on lesson_attempts_202606 lesson_attempts_18
+  Update on lesson_attempts_202607 lesson_attempts_19
+  Update on lesson_attempts_202608 lesson_attempts_20
+  Update on lesson_attempts_202609 lesson_attempts_21
+  Update on lesson_attempts_202610 lesson_attempts_22
+  Update on lesson_attempts_202611 lesson_attempts_23
+  Update on lesson_attempts_202612 lesson_attempts_24
+  Update on lesson_attempts_default lesson_attempts_25
+  Buffers: shared hit=91 read=88 dirtied=8
+  InitPlan 2
+    ->  Result  (cost=11.67..11.68 rows=1 width=8) (actual time=0.975..0.975 rows=1.00 loops=1)
+          Buffers: shared hit=54 read=24
+          InitPlan 1
+            ->  Limit  (cost=0.42..11.67 rows=1 width=8) (actual time=0.974..0.974 rows=1.00 loops=1)
+                  Buffers: shared hit=54 read=24
+                  ->  Index Scan Backward using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_26  (cost=0.42..8595.05 rows=764 width=8) (actual time=0.973..0.973 rows=1.00 loops=1)
+                        Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                        Filter: (completed_at IS NULL)
+                        Rows Removed by Filter: 167
+                        Index Searches: 1
+                        Buffers: shared hit=54 read=24
+  ->  Append  (cost=0.42..154.09 rows=25 width=24) (actual time=5.704..5.718 rows=1.00 loops=1)
+        Buffers: shared hit=59 read=75
+        ->  Index Scan using lesson_attempts_202501_pkey on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..8.44 rows=1 width=24) (actual time=1.267..1.267 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=54 read=27
+        ->  Index Scan using lesson_attempts_202502_pkey on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8.44 rows=1 width=24) (actual time=0.300..0.300 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202503_pkey on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..8.44 rows=1 width=24) (actual time=0.423..0.423 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202504_pkey on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..8.44 rows=1 width=24) (actual time=0.267..0.267 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202505_pkey on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..8.44 rows=1 width=24) (actual time=0.270..0.270 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202506_pkey on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..8.44 rows=1 width=24) (actual time=0.258..0.258 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202507_pkey on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..8.44 rows=1 width=24) (actual time=0.260..0.260 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202508_pkey on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..8.44 rows=1 width=24) (actual time=0.255..0.255 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202509_pkey on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..8.44 rows=1 width=24) (actual time=0.241..0.241 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202510_pkey on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..8.44 rows=1 width=24) (actual time=0.240..0.240 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202511_pkey on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..8.44 rows=1 width=24) (actual time=0.254..0.254 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202512_pkey on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..8.44 rows=1 width=24) (actual time=0.240..0.240 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202601_pkey on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..8.44 rows=1 width=24) (actual time=0.244..0.244 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202602_pkey on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8.44 rows=1 width=24) (actual time=0.247..0.248 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202603_pkey on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..8.44 rows=1 width=24) (actual time=0.302..0.302 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202604_pkey on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..8.44 rows=1 width=24) (actual time=0.253..0.253 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202605_pkey on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..8.44 rows=1 width=24) (actual time=0.374..0.374 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared read=3
+        ->  Index Scan using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=1.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Seq Scan on lesson_attempts_202607 lesson_attempts_19  (cost=0.00..2.03 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+              Buffers: shared hit=1
+        ->  Seq Scan on lesson_attempts_202608 lesson_attempts_20  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202609 lesson_attempts_21  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202610 lesson_attempts_22  (cost=0.00..0.00 rows=1 width=24) (actual time=0.000..0.000 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202611 lesson_attempts_23  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202612 lesson_attempts_24  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_default lesson_attempts_25  (cost=0.00..0.00 rows=1 width=24) (actual time=0.000..0.000 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+Planning:
+  Buffers: shared hit=4179 read=209
+Planning Time: 7.397 ms
+Execution Time: 7.832 ms
+=== W02 run 2 ===
+Update on lesson_attempts  (cost=12.10..165.77 rows=0 width=0) (actual time=0.356..0.357 rows=0.00 loops=1)
+  Update on lesson_attempts_202501 lesson_attempts_1
+  Update on lesson_attempts_202502 lesson_attempts_2
+  Update on lesson_attempts_202503 lesson_attempts_3
+  Update on lesson_attempts_202504 lesson_attempts_4
+  Update on lesson_attempts_202505 lesson_attempts_5
+  Update on lesson_attempts_202506 lesson_attempts_6
+  Update on lesson_attempts_202507 lesson_attempts_7
+  Update on lesson_attempts_202508 lesson_attempts_8
+  Update on lesson_attempts_202509 lesson_attempts_9
+  Update on lesson_attempts_202510 lesson_attempts_10
+  Update on lesson_attempts_202511 lesson_attempts_11
+  Update on lesson_attempts_202512 lesson_attempts_12
+  Update on lesson_attempts_202601 lesson_attempts_13
+  Update on lesson_attempts_202602 lesson_attempts_14
+  Update on lesson_attempts_202603 lesson_attempts_15
+  Update on lesson_attempts_202604 lesson_attempts_16
+  Update on lesson_attempts_202605 lesson_attempts_17
+  Update on lesson_attempts_202606 lesson_attempts_18
+  Update on lesson_attempts_202607 lesson_attempts_19
+  Update on lesson_attempts_202608 lesson_attempts_20
+  Update on lesson_attempts_202609 lesson_attempts_21
+  Update on lesson_attempts_202610 lesson_attempts_22
+  Update on lesson_attempts_202611 lesson_attempts_23
+  Update on lesson_attempts_202612 lesson_attempts_24
+  Update on lesson_attempts_default lesson_attempts_25
+  Buffers: shared hit=184
+  InitPlan 2
+    ->  Result  (cost=11.67..11.68 rows=1 width=8) (actual time=0.140..0.140 rows=1.00 loops=1)
+          Buffers: shared hit=80
+          InitPlan 1
+            ->  Limit  (cost=0.42..11.67 rows=1 width=8) (actual time=0.139..0.140 rows=1.00 loops=1)
+                  Buffers: shared hit=80
+                  ->  Index Scan Backward using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_26  (cost=0.42..8595.05 rows=764 width=8) (actual time=0.139..0.139 rows=1.00 loops=1)
+                        Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                        Filter: (completed_at IS NULL)
+                        Rows Removed by Filter: 167
+                        Index Searches: 1
+                        Buffers: shared hit=80
+  ->  Append  (cost=0.42..154.09 rows=25 width=24) (actual time=0.241..0.250 rows=1.00 loops=1)
+        Buffers: shared hit=138
+        ->  Index Scan using lesson_attempts_202501_pkey on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..8.44 rows=1 width=24) (actual time=0.144..0.144 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=83
+        ->  Index Scan using lesson_attempts_202502_pkey on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202503_pkey on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202504_pkey on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202505_pkey on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202506_pkey on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202507_pkey on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..8.44 rows=1 width=24) (actual time=0.013..0.013 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202508_pkey on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202509_pkey on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202510_pkey on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202511_pkey on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202512_pkey on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202601_pkey on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202602_pkey on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202603_pkey on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202604_pkey on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202605_pkey on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..8.44 rows=1 width=24) (actual time=0.007..0.007 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..8.44 rows=1 width=24) (actual time=0.003..0.004 rows=1.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=6
+        ->  Seq Scan on lesson_attempts_202607 lesson_attempts_19  (cost=0.00..2.03 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+              Buffers: shared hit=1
+        ->  Seq Scan on lesson_attempts_202608 lesson_attempts_20  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202609 lesson_attempts_21  (cost=0.00..0.00 rows=1 width=24) (actual time=0.000..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202610 lesson_attempts_22  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202611 lesson_attempts_23  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202612 lesson_attempts_24  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_default lesson_attempts_25  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+Planning:
+  Buffers: shared hit=4388
+Planning Time: 5.918 ms
+Execution Time: 0.519 ms
+=== W02 run 3 ===
+Update on lesson_attempts  (cost=12.10..165.77 rows=0 width=0) (actual time=0.348..0.349 rows=0.00 loops=1)
+  Update on lesson_attempts_202501 lesson_attempts_1
+  Update on lesson_attempts_202502 lesson_attempts_2
+  Update on lesson_attempts_202503 lesson_attempts_3
+  Update on lesson_attempts_202504 lesson_attempts_4
+  Update on lesson_attempts_202505 lesson_attempts_5
+  Update on lesson_attempts_202506 lesson_attempts_6
+  Update on lesson_attempts_202507 lesson_attempts_7
+  Update on lesson_attempts_202508 lesson_attempts_8
+  Update on lesson_attempts_202509 lesson_attempts_9
+  Update on lesson_attempts_202510 lesson_attempts_10
+  Update on lesson_attempts_202511 lesson_attempts_11
+  Update on lesson_attempts_202512 lesson_attempts_12
+  Update on lesson_attempts_202601 lesson_attempts_13
+  Update on lesson_attempts_202602 lesson_attempts_14
+  Update on lesson_attempts_202603 lesson_attempts_15
+  Update on lesson_attempts_202604 lesson_attempts_16
+  Update on lesson_attempts_202605 lesson_attempts_17
+  Update on lesson_attempts_202606 lesson_attempts_18
+  Update on lesson_attempts_202607 lesson_attempts_19
+  Update on lesson_attempts_202608 lesson_attempts_20
+  Update on lesson_attempts_202609 lesson_attempts_21
+  Update on lesson_attempts_202610 lesson_attempts_22
+  Update on lesson_attempts_202611 lesson_attempts_23
+  Update on lesson_attempts_202612 lesson_attempts_24
+  Update on lesson_attempts_default lesson_attempts_25
+  Buffers: shared hit=184
+  InitPlan 2
+    ->  Result  (cost=11.67..11.68 rows=1 width=8) (actual time=0.137..0.137 rows=1.00 loops=1)
+          Buffers: shared hit=80
+          InitPlan 1
+            ->  Limit  (cost=0.42..11.67 rows=1 width=8) (actual time=0.136..0.136 rows=1.00 loops=1)
+                  Buffers: shared hit=80
+                  ->  Index Scan Backward using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_26  (cost=0.42..8595.05 rows=764 width=8) (actual time=0.135..0.136 rows=1.00 loops=1)
+                        Index Cond: ((started_at >= '2026-06-30 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
+                        Filter: (completed_at IS NULL)
+                        Rows Removed by Filter: 167
+                        Index Searches: 1
+                        Buffers: shared hit=80
+  ->  Append  (cost=0.42..154.09 rows=25 width=24) (actual time=0.234..0.243 rows=1.00 loops=1)
+        Buffers: shared hit=138
+        ->  Index Scan using lesson_attempts_202501_pkey on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..8.44 rows=1 width=24) (actual time=0.140..0.140 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=83
+        ->  Index Scan using lesson_attempts_202502_pkey on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202503_pkey on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202504_pkey on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202505_pkey on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202506_pkey on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..8.44 rows=1 width=24) (actual time=0.013..0.013 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202507_pkey on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202508_pkey on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202509_pkey on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202510_pkey on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202511_pkey on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202512_pkey on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202601_pkey on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202602_pkey on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202603_pkey on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..8.44 rows=1 width=24) (actual time=0.005..0.005 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202604_pkey on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..8.44 rows=1 width=24) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202605_pkey on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..8.44 rows=1 width=24) (actual time=0.006..0.006 rows=0.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using lesson_attempts_202606_pkey on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..8.44 rows=1 width=24) (actual time=0.003..0.003 rows=1.00 loops=1)
+              Index Cond: (attempt_id = (InitPlan 2).col1)
+              Index Searches: 1
+              Buffers: shared hit=6
+        ->  Seq Scan on lesson_attempts_202607 lesson_attempts_19  (cost=0.00..2.03 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+              Buffers: shared hit=1
+        ->  Seq Scan on lesson_attempts_202608 lesson_attempts_20  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202609 lesson_attempts_21  (cost=0.00..0.00 rows=1 width=24) (actual time=0.000..0.000 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202610 lesson_attempts_22  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202611 lesson_attempts_23  (cost=0.00..0.00 rows=1 width=24) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_202612 lesson_attempts_24  (cost=0.00..0.00 rows=1 width=24) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+        ->  Seq Scan on lesson_attempts_default lesson_attempts_25  (cost=0.00..0.00 rows=1 width=24) (actual time=0.000..0.000 rows=0.00 loops=1)
+              Filter: (attempt_id = (InitPlan 2).col1)
+Planning:
+  Buffers: shared hit=4388
+Planning Time: 5.437 ms
+Execution Time: 0.548 ms

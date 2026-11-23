@@ -1,0 +1,66 @@
+=== R15 run 1 ===
+Aggregate  (cost=70072.32..70072.33 rows=1 width=16) (actual time=16.095..16.105 rows=1.00 loops=1)
+  Buffers: shared hit=29592 read=210
+  ->  Gather  (cost=1000.00..12992.70 rows=6747 width=4) (actual time=10.617..10.853 rows=6889.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7519 read=49
+        ->  Parallel Seq Scan on learners l  (cost=0.00..11318.00 rows=2811 width=4) (actual time=9.399..10.045 rows=2296.33 loops=3)
+              Filter: ((joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (joined_at < '2026-02-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 197704
+              Buffers: shared hit=7519 read=49
+  SubPlan 1
+    ->  Index Scan using daily_activity_pk on daily_activity d  (cost=0.43..8.45 rows=1 width=0) (actual time=0.001..0.001 rows=0.20 loops=6889)
+          Index Cond: ((learner_id = l.learner_id) AND (activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+          Filter: (xp > 0)
+          Rows Removed by Filter: 0
+          Index Searches: 6889
+          Buffers: shared hit=22073 read=161
+Planning:
+  Buffers: shared hit=276 read=7
+Planning Time: 0.500 ms
+Execution Time: 16.129 ms
+=== R15 run 2 ===
+Aggregate  (cost=70072.32..70072.33 rows=1 width=16) (actual time=14.325..14.334 rows=1.00 loops=1)
+  Buffers: shared hit=29802
+  ->  Gather  (cost=1000.00..12992.70 rows=6747 width=4) (actual time=10.526..10.745 rows=6889.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7568
+        ->  Parallel Seq Scan on learners l  (cost=0.00..11318.00 rows=2811 width=4) (actual time=9.298..9.836 rows=2296.33 loops=3)
+              Filter: ((joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (joined_at < '2026-02-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 197704
+              Buffers: shared hit=7568
+  SubPlan 1
+    ->  Index Scan using daily_activity_pk on daily_activity d  (cost=0.43..8.45 rows=1 width=0) (actual time=0.000..0.000 rows=0.20 loops=6889)
+          Index Cond: ((learner_id = l.learner_id) AND (activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+          Filter: (xp > 0)
+          Rows Removed by Filter: 0
+          Index Searches: 6889
+          Buffers: shared hit=22234
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.480 ms
+Execution Time: 14.357 ms
+=== R15 run 3 ===
+Aggregate  (cost=70072.32..70072.33 rows=1 width=16) (actual time=15.274..15.283 rows=1.00 loops=1)
+  Buffers: shared hit=29802
+  ->  Gather  (cost=1000.00..12992.70 rows=6747 width=4) (actual time=11.275..11.522 rows=6889.00 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=7568
+        ->  Parallel Seq Scan on learners l  (cost=0.00..11318.00 rows=2811 width=4) (actual time=10.129..10.701 rows=2296.33 loops=3)
+              Filter: ((joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (joined_at < '2026-02-01 00:00:00+05:30'::timestamp with time zone))
+              Rows Removed by Filter: 197704
+              Buffers: shared hit=7568
+  SubPlan 1
+    ->  Index Scan using daily_activity_pk on daily_activity d  (cost=0.43..8.45 rows=1 width=0) (actual time=0.000..0.000 rows=0.20 loops=6889)
+          Index Cond: ((learner_id = l.learner_id) AND (activity_date >= '2026-06-01'::date) AND (activity_date < '2026-07-01'::date))
+          Filter: (xp > 0)
+          Rows Removed by Filter: 0
+          Index Searches: 6889
+          Buffers: shared hit=22234
+Planning:
+  Buffers: shared hit=283
+Planning Time: 0.527 ms
+Execution Time: 15.307 ms

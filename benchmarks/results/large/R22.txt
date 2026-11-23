@@ -1,0 +1,330 @@
+=== R22 run 1 ===
+Limit  (cost=7712.18..7714.11 rows=25 width=26) (actual time=19.257..19.263 rows=25.00 loops=1)
+  Buffers: shared hit=4609 read=1631
+  ->  Merge Append  (cost=9.02..277962.93 rows=3608307 width=26) (actual time=2.483..17.541 rows=100025.00 loops=1)
+        Sort Key: lesson_attempts.started_at DESC
+        Buffers: shared hit=4609 read=1631
+        ->  Index Only Scan using lesson_attempts_202501_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.317..0.317 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202502_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.192..0.192 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202503_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.197..0.197 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202504_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.194..0.194 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202505_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.176..0.176 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202506_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.196..0.196 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202507_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.190..0.190 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202508_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.186..0.186 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202509_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.193..0.193 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202510_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.173..0.173 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202511_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.170..0.170 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202512_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.169..0.169 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202601_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.020..0.020 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202602_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.015..0.015 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202603_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.021..0.021 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202604_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..9624.43 rows=197951 width=26) (actual time=0.017..0.017 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202605_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..10295.20 rows=207205 width=26) (actual time=0.017..0.017 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared read=4
+        ->  Index Only Scan using lesson_attempts_202606_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..10323.61 rows=203144 width=26) (actual time=0.019..11.583 rows=100025.00 loops=1)
+              Heap Fetches: 100025
+              Index Searches: 1
+              Buffers: shared hit=4602 read=1563
+        ->  Index Only Scan using lesson_attempts_202607_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202607 lesson_attempts_19  (cost=0.12..8.14 rows=1 width=26) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202608_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202608 lesson_attempts_20  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202609_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202609 lesson_attempts_21  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202610_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202610 lesson_attempts_22  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202611_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202611 lesson_attempts_23  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202612_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202612 lesson_attempts_24  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_default_started_at_attempt_id_learner_id_le_idx on lesson_attempts_default lesson_attempts_25  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=4267 read=293
+Planning Time: 8.390 ms
+Execution Time: 19.343 ms
+=== R22 run 2 ===
+Limit  (cost=7712.18..7714.11 rows=25 width=26) (actual time=13.548..13.555 rows=25.00 loops=1)
+  Buffers: shared hit=6240
+  ->  Merge Append  (cost=9.02..277962.93 rows=3608307 width=26) (actual time=0.210..11.865 rows=100025.00 loops=1)
+        Sort Key: lesson_attempts.started_at DESC
+        Buffers: shared hit=6240
+        ->  Index Only Scan using lesson_attempts_202501_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.013..0.013 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202502_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202503_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.012..0.012 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202504_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.015..0.015 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202505_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202506_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.013..0.013 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202507_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.012..0.012 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202508_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.011..0.011 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202509_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.010..0.010 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202510_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202511_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202512_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.017..0.017 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202601_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202602_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202603_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202604_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..9624.43 rows=197951 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202605_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..10295.20 rows=207205 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202606_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..10323.61 rows=203144 width=26) (actual time=0.012..8.029 rows=100025.00 loops=1)
+              Heap Fetches: 100025
+              Index Searches: 1
+              Buffers: shared hit=6165
+        ->  Index Only Scan using lesson_attempts_202607_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202607 lesson_attempts_19  (cost=0.12..8.14 rows=1 width=26) (actual time=0.004..0.004 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202608_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202608 lesson_attempts_20  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202609_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202609 lesson_attempts_21  (cost=0.12..8.14 rows=1 width=26) (actual time=0.001..0.001 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202610_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202610 lesson_attempts_22  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202611_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202611 lesson_attempts_23  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202612_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202612 lesson_attempts_24  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_default_started_at_attempt_id_learner_id_le_idx on lesson_attempts_default lesson_attempts_25  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=4560
+Planning Time: 5.124 ms
+Execution Time: 13.625 ms
+=== R22 run 3 ===
+Limit  (cost=7712.18..7714.11 rows=25 width=26) (actual time=13.769..13.775 rows=25.00 loops=1)
+  Buffers: shared hit=6240
+  ->  Merge Append  (cost=9.02..277962.93 rows=3608307 width=26) (actual time=0.178..12.067 rows=100025.00 loops=1)
+        Sort Key: lesson_attempts.started_at DESC
+        Buffers: shared hit=6240
+        ->  Index Only Scan using lesson_attempts_202501_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202501 lesson_attempts_1  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.010..0.010 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202502_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202502 lesson_attempts_2  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202503_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202503 lesson_attempts_3  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202504_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202504 lesson_attempts_4  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.013..0.013 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202505_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202505 lesson_attempts_5  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.006..0.006 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202506_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202506 lesson_attempts_6  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.018..0.018 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202507_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202507 lesson_attempts_7  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.010..0.010 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202508_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202508 lesson_attempts_8  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202509_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202509 lesson_attempts_9  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202510_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202510 lesson_attempts_10  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202511_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202511 lesson_attempts_11  (cost=0.42..9615.45 rows=197802 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202512_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202512 lesson_attempts_12  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202601_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202601 lesson_attempts_13  (cost=0.42..9936.36 rows=204396 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202602_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202602 lesson_attempts_14  (cost=0.42..8974.65 rows=184615 width=26) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202603_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202603 lesson_attempts_15  (cost=0.42..9936.35 rows=204395 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202604_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202604 lesson_attempts_16  (cost=0.42..9624.43 rows=197951 width=26) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202605_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202605 lesson_attempts_17  (cost=0.42..10295.20 rows=207205 width=26) (actual time=0.009..0.009 rows=1.00 loops=1)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Only Scan using lesson_attempts_202606_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202606 lesson_attempts_18  (cost=0.42..10323.61 rows=203144 width=26) (actual time=0.011..8.319 rows=100025.00 loops=1)
+              Heap Fetches: 100025
+              Index Searches: 1
+              Buffers: shared hit=6165
+        ->  Index Only Scan using lesson_attempts_202607_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202607 lesson_attempts_19  (cost=0.12..8.14 rows=1 width=26) (actual time=0.003..0.003 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202608_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202608 lesson_attempts_20  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202609_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202609 lesson_attempts_21  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202610_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202610 lesson_attempts_22  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202611_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202611 lesson_attempts_23  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_202612_started_at_attempt_id_learner_id_les_idx on lesson_attempts_202612 lesson_attempts_24  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+        ->  Index Only Scan using lesson_attempts_default_started_at_attempt_id_learner_id_le_idx on lesson_attempts_default lesson_attempts_25  (cost=0.12..8.14 rows=1 width=26) (actual time=0.002..0.002 rows=0.00 loops=1)
+              Heap Fetches: 0
+              Index Searches: 1
+              Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=4560
+Planning Time: 5.165 ms
+Execution Time: 13.833 ms

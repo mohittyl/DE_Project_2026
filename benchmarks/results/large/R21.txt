@@ -1,0 +1,87 @@
+=== R21 run 1 ===
+Sort  (cost=502000.71..502001.06 rows=142 width=4) (actual time=31.685..31.687 rows=40.00 loops=1)
+  Sort Key: d.learner_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=700 read=17972
+  ->  HashAggregate  (cost=22087.26..501995.63 rows=142 width=4) (actual time=30.100..31.675 rows=40.00 loops=1)
+        Group Key: d.learner_id
+        Filter: ((count(*) = 7) AND (NOT EXISTS(SubPlan 1)))
+        Batches: 1  Memory Usage: 2841kB
+        Rows Removed by Filter: 44481
+        Buffers: shared hit=697 read=17972
+        ->  Bitmap Heap Scan on daily_activity d  (cost=1274.02..21787.95 rows=59862 width=4) (actual time=4.143..23.672 rows=47756.00 loops=1)
+              Recheck Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+              Heap Blocks: exact=17776
+              Buffers: shared hit=3 read=17906
+              ->  Bitmap Index Scan on idx_daily_activity_date_learner  (cost=0.00..1259.05 rows=59862 width=0) (actual time=2.963..2.964 rows=47756.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=131
+        SubPlan 1
+          ->  Index Only Scan using idx_daily_activity_date_learner on daily_activity t  (cost=0.43..8.45 rows=1 width=0) (actual time=0.001..0.001 rows=0.80 loops=200)
+                Index Cond: ((activity_date = '2026-06-30'::date) AND (learner_id = d.learner_id))
+                Heap Fetches: 160
+                Index Searches: 200
+                Buffers: shared hit=694 read=66
+Planning:
+  Buffers: shared hit=150 read=10
+Planning Time: 0.346 ms
+Execution Time: 31.817 ms
+=== R21 run 2 ===
+Sort  (cost=502000.71..502001.06 rows=142 width=4) (actual time=31.461..31.463 rows=40.00 loops=1)
+  Sort Key: d.learner_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=831 read=17841 written=1
+  ->  HashAggregate  (cost=22087.26..501995.63 rows=142 width=4) (actual time=29.793..31.452 rows=40.00 loops=1)
+        Group Key: d.learner_id
+        Filter: ((count(*) = 7) AND (NOT EXISTS(SubPlan 1)))
+        Batches: 1  Memory Usage: 2841kB
+        Rows Removed by Filter: 44481
+        Buffers: shared hit=828 read=17841 written=1
+        ->  Bitmap Heap Scan on daily_activity d  (cost=1274.02..21787.95 rows=59862 width=4) (actual time=3.025..23.164 rows=47756.00 loops=1)
+              Recheck Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+              Heap Blocks: exact=17776
+              Buffers: shared hit=68 read=17841 written=1
+              ->  Bitmap Index Scan on idx_daily_activity_date_learner  (cost=0.00..1259.05 rows=59862 width=0) (actual time=1.805..1.805 rows=47756.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=131
+        SubPlan 1
+          ->  Index Only Scan using idx_daily_activity_date_learner on daily_activity t  (cost=0.43..8.45 rows=1 width=0) (actual time=0.001..0.001 rows=0.80 loops=200)
+                Index Cond: ((activity_date = '2026-06-30'::date) AND (learner_id = d.learner_id))
+                Heap Fetches: 160
+                Index Searches: 200
+                Buffers: shared hit=760
+Planning:
+  Buffers: shared hit=156 read=4
+Planning Time: 0.297 ms
+Execution Time: 31.592 ms
+=== R21 run 3 ===
+Sort  (cost=502000.71..502001.06 rows=142 width=4) (actual time=38.495..38.498 rows=40.00 loops=1)
+  Sort Key: d.learner_id
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=831 read=17841
+  ->  HashAggregate  (cost=22087.26..501995.63 rows=142 width=4) (actual time=35.989..38.484 rows=40.00 loops=1)
+        Group Key: d.learner_id
+        Filter: ((count(*) = 7) AND (NOT EXISTS(SubPlan 1)))
+        Batches: 1  Memory Usage: 2841kB
+        Rows Removed by Filter: 44481
+        Buffers: shared hit=828 read=17841
+        ->  Bitmap Heap Scan on daily_activity d  (cost=1274.02..21787.95 rows=59862 width=4) (actual time=3.239..27.693 rows=47756.00 loops=1)
+              Recheck Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+              Heap Blocks: exact=17776
+              Buffers: shared hit=68 read=17841
+              ->  Bitmap Index Scan on idx_daily_activity_date_learner  (cost=0.00..1259.05 rows=59862 width=0) (actual time=1.967..1.967 rows=47756.00 loops=1)
+                    Index Cond: ((activity_date >= '2026-06-23'::date) AND (activity_date < '2026-06-30'::date))
+                    Index Searches: 1
+                    Buffers: shared hit=2 read=131
+        SubPlan 1
+          ->  Index Only Scan using idx_daily_activity_date_learner on daily_activity t  (cost=0.43..8.45 rows=1 width=0) (actual time=0.001..0.001 rows=0.80 loops=200)
+                Index Cond: ((activity_date = '2026-06-30'::date) AND (learner_id = d.learner_id))
+                Heap Fetches: 160
+                Index Searches: 200
+                Buffers: shared hit=760
+Planning:
+  Buffers: shared hit=156 read=4
+Planning Time: 0.317 ms
+Execution Time: 38.611 ms

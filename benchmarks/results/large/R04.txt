@@ -1,0 +1,408 @@
+=== R04 run 1 ===
+GroupAggregate  (cost=161.36..161.56 rows=1 width=10) (actual time=7.060..7.062 rows=1.00 loops=1)
+  Group Key: l.daily_goal_xp
+  Buffers: shared hit=8 read=69
+  ->  Sort  (cost=161.36..161.43 rows=25 width=4) (actual time=7.057..7.058 rows=1.00 loops=1)
+        Sort Key: l.daily_goal_xp
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=8 read=69
+        ->  Nested Loop Left Join  (cost=0.84..160.78 rows=25 width=4) (actual time=7.040..7.049 rows=1.00 loops=1)
+              Buffers: shared hit=5 read=69
+              ->  Index Scan using learners_pkey on learners l  (cost=0.42..8.44 rows=1 width=6) (actual time=0.320..0.320 rows=1.00 loops=1)
+                    Index Cond: (learner_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared read=4
+              ->  Append  (cost=0.42..152.09 rows=25 width=6) (actual time=6.719..6.727 rows=1.00 loops=1)
+                    Buffers: shared hit=5 read=65
+                    ->  Index Scan using lesson_attempts_202501_learner_id_started_at_idx on lesson_attempts_202501 a_1  (cost=0.42..8.44 rows=1 width=6) (actual time=0.391..0.391 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202502_learner_id_started_at_idx on lesson_attempts_202502 a_2  (cost=0.42..8.44 rows=1 width=6) (actual time=0.263..0.263 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202503_learner_id_started_at_idx on lesson_attempts_202503 a_3  (cost=0.42..8.44 rows=1 width=6) (actual time=0.368..0.368 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared read=4
+                    ->  Index Scan using lesson_attempts_202504_learner_id_started_at_idx on lesson_attempts_202504 a_4  (cost=0.42..8.44 rows=1 width=6) (actual time=0.429..0.429 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 3
+                          Index Searches: 1
+                          Buffers: shared read=6
+                    ->  Index Scan using lesson_attempts_202505_learner_id_started_at_idx on lesson_attempts_202505 a_5  (cost=0.42..8.44 rows=1 width=6) (actual time=0.473..0.473 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared read=4
+                    ->  Index Scan using lesson_attempts_202506_learner_id_started_at_idx on lesson_attempts_202506 a_6  (cost=0.42..8.44 rows=1 width=6) (actual time=0.335..0.335 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared read=5
+                    ->  Index Scan using lesson_attempts_202507_learner_id_started_at_idx on lesson_attempts_202507 a_7  (cost=0.42..8.44 rows=1 width=6) (actual time=0.300..0.300 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared read=4
+                    ->  Index Scan using lesson_attempts_202508_learner_id_started_at_idx on lesson_attempts_202508 a_8  (cost=0.42..8.44 rows=1 width=6) (actual time=0.385..0.385 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared read=4
+                    ->  Index Scan using lesson_attempts_202509_learner_id_started_at_idx on lesson_attempts_202509 a_9  (cost=0.42..8.44 rows=1 width=6) (actual time=0.409..0.410 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared read=4
+                    ->  Index Scan using lesson_attempts_202510_learner_id_started_at_idx on lesson_attempts_202510 a_10  (cost=0.42..8.44 rows=1 width=6) (actual time=0.390..0.390 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202511_learner_id_started_at_idx on lesson_attempts_202511 a_11  (cost=0.42..8.44 rows=1 width=6) (actual time=0.415..0.415 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=4
+                    ->  Index Scan using lesson_attempts_202512_learner_id_started_at_idx on lesson_attempts_202512 a_12  (cost=0.42..8.44 rows=1 width=6) (actual time=0.425..0.425 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202601_learner_id_started_at_idx on lesson_attempts_202601 a_13  (cost=0.42..8.44 rows=1 width=6) (actual time=0.344..0.344 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202602_learner_id_started_at_idx on lesson_attempts_202602 a_14  (cost=0.42..8.44 rows=1 width=6) (actual time=0.411..0.412 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=3
+                    ->  Index Scan using lesson_attempts_202603_learner_id_started_at_idx on lesson_attempts_202603 a_15  (cost=0.42..8.44 rows=1 width=6) (actual time=0.320..0.320 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=3
+                    ->  Index Scan using lesson_attempts_202604_learner_id_started_at_idx on lesson_attempts_202604 a_16  (cost=0.42..8.44 rows=1 width=6) (actual time=0.372..0.372 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared read=3
+                    ->  Index Scan using lesson_attempts_202605_learner_id_started_at_idx on lesson_attempts_202605 a_17  (cost=0.42..8.44 rows=1 width=6) (actual time=0.340..0.340 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=3
+                    ->  Index Scan using lesson_attempts_202606_learner_id_started_at_idx on lesson_attempts_202606 a_18  (cost=0.42..8.44 rows=1 width=6) (actual time=0.348..0.348 rows=1.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 29
+                          Index Searches: 1
+                          Buffers: shared hit=1 read=3
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=6) (actual time=0.003..0.003 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+Planning:
+  Buffers: shared hit=4477 read=186
+Planning Time: 21.947 ms
+Execution Time: 7.123 ms
+=== R04 run 2 ===
+GroupAggregate  (cost=161.36..161.56 rows=1 width=10) (actual time=0.115..0.116 rows=1.00 loops=1)
+  Group Key: l.daily_goal_xp
+  Buffers: shared hit=77
+  ->  Sort  (cost=161.36..161.43 rows=25 width=4) (actual time=0.113..0.114 rows=1.00 loops=1)
+        Sort Key: l.daily_goal_xp
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=77
+        ->  Nested Loop Left Join  (cost=0.84..160.78 rows=25 width=4) (actual time=0.097..0.106 rows=1.00 loops=1)
+              Buffers: shared hit=74
+              ->  Index Scan using learners_pkey on learners l  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+                    Index Cond: (learner_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=4
+              ->  Append  (cost=0.42..152.09 rows=25 width=6) (actual time=0.091..0.100 rows=1.00 loops=1)
+                    Buffers: shared hit=70
+                    ->  Index Scan using lesson_attempts_202501_learner_id_started_at_idx on lesson_attempts_202501 a_1  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202502_learner_id_started_at_idx on lesson_attempts_202502 a_2  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202503_learner_id_started_at_idx on lesson_attempts_202503 a_3  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202504_learner_id_started_at_idx on lesson_attempts_202504 a_4  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 3
+                          Index Searches: 1
+                          Buffers: shared hit=6
+                    ->  Index Scan using lesson_attempts_202505_learner_id_started_at_idx on lesson_attempts_202505 a_5  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202506_learner_id_started_at_idx on lesson_attempts_202506 a_6  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Scan using lesson_attempts_202507_learner_id_started_at_idx on lesson_attempts_202507 a_7  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202508_learner_id_started_at_idx on lesson_attempts_202508 a_8  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202509_learner_id_started_at_idx on lesson_attempts_202509 a_9  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202510_learner_id_started_at_idx on lesson_attempts_202510 a_10  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202511_learner_id_started_at_idx on lesson_attempts_202511 a_11  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Scan using lesson_attempts_202512_learner_id_started_at_idx on lesson_attempts_202512 a_12  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202601_learner_id_started_at_idx on lesson_attempts_202601 a_13  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202602_learner_id_started_at_idx on lesson_attempts_202602 a_14  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202603_learner_id_started_at_idx on lesson_attempts_202603 a_15  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202604_learner_id_started_at_idx on lesson_attempts_202604 a_16  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202605_learner_id_started_at_idx on lesson_attempts_202605 a_17  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202606_learner_id_started_at_idx on lesson_attempts_202606 a_18  (cost=0.42..8.44 rows=1 width=6) (actual time=0.008..0.008 rows=1.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 29
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+Planning:
+  Buffers: shared hit=4617
+Planning Time: 5.319 ms
+Execution Time: 0.177 ms
+=== R04 run 3 ===
+GroupAggregate  (cost=161.36..161.56 rows=1 width=10) (actual time=0.120..0.121 rows=1.00 loops=1)
+  Group Key: l.daily_goal_xp
+  Buffers: shared hit=77
+  ->  Sort  (cost=161.36..161.43 rows=25 width=4) (actual time=0.117..0.118 rows=1.00 loops=1)
+        Sort Key: l.daily_goal_xp
+        Sort Method: quicksort  Memory: 25kB
+        Buffers: shared hit=77
+        ->  Nested Loop Left Join  (cost=0.84..160.78 rows=25 width=4) (actual time=0.104..0.111 rows=1.00 loops=1)
+              Buffers: shared hit=74
+              ->  Index Scan using learners_pkey on learners l  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=1.00 loops=1)
+                    Index Cond: (learner_id = 1042)
+                    Index Searches: 1
+                    Buffers: shared hit=4
+              ->  Append  (cost=0.42..152.09 rows=25 width=6) (actual time=0.098..0.105 rows=1.00 loops=1)
+                    Buffers: shared hit=70
+                    ->  Index Scan using lesson_attempts_202501_learner_id_started_at_idx on lesson_attempts_202501 a_1  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202502_learner_id_started_at_idx on lesson_attempts_202502 a_2  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202503_learner_id_started_at_idx on lesson_attempts_202503 a_3  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202504_learner_id_started_at_idx on lesson_attempts_202504 a_4  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 3
+                          Index Searches: 1
+                          Buffers: shared hit=6
+                    ->  Index Scan using lesson_attempts_202505_learner_id_started_at_idx on lesson_attempts_202505 a_5  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202506_learner_id_started_at_idx on lesson_attempts_202506 a_6  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Scan using lesson_attempts_202507_learner_id_started_at_idx on lesson_attempts_202507 a_7  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202508_learner_id_started_at_idx on lesson_attempts_202508 a_8  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202509_learner_id_started_at_idx on lesson_attempts_202509 a_9  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202510_learner_id_started_at_idx on lesson_attempts_202510 a_10  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202511_learner_id_started_at_idx on lesson_attempts_202511 a_11  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=5
+                    ->  Index Scan using lesson_attempts_202512_learner_id_started_at_idx on lesson_attempts_202512 a_12  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202601_learner_id_started_at_idx on lesson_attempts_202601 a_13  (cost=0.42..8.44 rows=1 width=6) (actual time=0.004..0.004 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202602_learner_id_started_at_idx on lesson_attempts_202602 a_14  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202603_learner_id_started_at_idx on lesson_attempts_202603 a_15  (cost=0.42..8.44 rows=1 width=6) (actual time=0.005..0.005 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 1
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202604_learner_id_started_at_idx on lesson_attempts_202604 a_16  (cost=0.42..8.44 rows=1 width=6) (actual time=0.012..0.012 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Index Searches: 1
+                          Buffers: shared hit=3
+                    ->  Index Scan using lesson_attempts_202605_learner_id_started_at_idx on lesson_attempts_202605 a_17  (cost=0.42..8.44 rows=1 width=6) (actual time=0.006..0.006 rows=0.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 2
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Index Scan using lesson_attempts_202606_learner_id_started_at_idx on lesson_attempts_202606 a_18  (cost=0.42..8.44 rows=1 width=6) (actual time=0.008..0.008 rows=1.00 loops=1)
+                          Index Cond: (learner_id = 1042)
+                          Filter: (date(started_at) = '2026-06-30'::date)
+                          Rows Removed by Filter: 29
+                          Index Searches: 1
+                          Buffers: shared hit=4
+                    ->  Seq Scan on lesson_attempts_202607 a_19  (cost=0.00..0.00 rows=1 width=6) (actual time=0.002..0.002 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202608 a_20  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202609 a_21  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202610 a_22  (cost=0.00..0.00 rows=1 width=6) (actual time=0.001..0.001 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202611 a_23  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_202612 a_24  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+                    ->  Seq Scan on lesson_attempts_default a_25  (cost=0.00..0.00 rows=1 width=6) (actual time=0.000..0.000 rows=0.00 loops=1)
+                          Filter: ((learner_id = 1042) AND (date(started_at) = '2026-06-30'::date))
+Planning:
+  Buffers: shared hit=4617
+Planning Time: 5.346 ms
+Execution Time: 0.176 ms

@@ -1,0 +1,78 @@
+=== W05 run 1 ===
+Insert on learner_achievements  (cost=1.55..41057.91 rows=0 width=0) (actual time=824.090..824.091 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: learner_achievements_pk
+  Tuples Inserted: 79757
+  Conflicting Tuples: 159646
+  Buffers: shared hit=1510775 read=16982 dirtied=8457 written=7206
+  ->  GroupAggregate  (cost=1.55..41057.91 rows=179618 width=16) (actual time=0.351..107.478 rows=239403.00 loops=1)
+        Group Key: e.learner_id
+        Filter: (sum(e.total_xp) >= 100)
+        Rows Removed by Filter: 360597
+        Buffers: shared read=6836 written=1913
+        InitPlan 1
+          ->  Seq Scan on achievements  (cost=0.00..1.12 rows=1 width=4) (actual time=0.124..0.124 rows=1.00 loops=1)
+                Filter: ((code)::text = 'XP_100'::text)
+                Rows Removed by Filter: 9
+                Buffers: shared read=1
+        ->  Index Scan using enrollments_pk on enrollments e  (cost=0.42..30571.11 rows=750000 width=8) (actual time=0.222..50.315 rows=750000.00 loops=1)
+              Index Searches: 1
+              Buffers: shared read=6835 written=1913
+Planning:
+  Buffers: shared hit=210 read=11
+Planning Time: 4.720 ms
+Trigger for constraint learner_achievements_learner_id_fkey: time=680.245 calls=79757
+Trigger for constraint learner_achievements_achievement_id_fkey: time=128.837 calls=79757
+Execution Time: 1636.832 ms
+=== W05 run 2 ===
+Insert on learner_achievements  (cost=1.55..41057.91 rows=0 width=0) (actual time=626.809..626.810 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: learner_achievements_pk
+  Tuples Inserted: 79757
+  Conflicting Tuples: 159646
+  Buffers: shared hit=1564474 read=19254 dirtied=10915 written=14705
+  ->  GroupAggregate  (cost=1.55..41057.91 rows=179618 width=16) (actual time=0.026..113.449 rows=239403.00 loops=1)
+        Group Key: e.learner_id
+        Filter: (sum(e.total_xp) >= 100)
+        Rows Removed by Filter: 360597
+        Buffers: shared hit=1 read=6835 written=3721
+        InitPlan 1
+          ->  Seq Scan on achievements  (cost=0.00..1.12 rows=1 width=4) (actual time=0.004..0.004 rows=1.00 loops=1)
+                Filter: ((code)::text = 'XP_100'::text)
+                Rows Removed by Filter: 9
+                Buffers: shared hit=1
+        ->  Index Scan using enrollments_pk on enrollments e  (cost=0.42..30571.11 rows=750000 width=8) (actual time=0.019..54.974 rows=750000.00 loops=1)
+              Index Searches: 1
+              Buffers: shared read=6835 written=3721
+Planning:
+  Buffers: shared hit=194 read=27 written=15
+Planning Time: 0.501 ms
+Trigger for constraint learner_achievements_learner_id_fkey: time=207.147 calls=79757
+Trigger for constraint learner_achievements_achievement_id_fkey: time=131.967 calls=79757
+Execution Time: 969.614 ms
+=== W05 run 3 ===
+Insert on learner_achievements  (cost=1.55..41057.91 rows=0 width=0) (actual time=546.290..546.291 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: learner_achievements_pk
+  Tuples Inserted: 79757
+  Conflicting Tuples: 159646
+  Buffers: shared hit=1557010 read=21573 dirtied=11128 written=14085
+  ->  GroupAggregate  (cost=1.55..41057.91 rows=179618 width=16) (actual time=0.027..116.607 rows=239403.00 loops=1)
+        Group Key: e.learner_id
+        Filter: (sum(e.total_xp) >= 100)
+        Rows Removed by Filter: 360597
+        Buffers: shared hit=1 read=6835 written=4159
+        InitPlan 1
+          ->  Seq Scan on achievements  (cost=0.00..1.12 rows=1 width=4) (actual time=0.003..0.003 rows=1.00 loops=1)
+                Filter: ((code)::text = 'XP_100'::text)
+                Rows Removed by Filter: 9
+                Buffers: shared hit=1
+        ->  Index Scan using enrollments_pk on enrollments e  (cost=0.42..30571.11 rows=750000 width=8) (actual time=0.022..58.290 rows=750000.00 loops=1)
+              Index Searches: 1
+              Buffers: shared read=6835 written=4159
+Planning:
+  Buffers: shared hit=186 read=35 written=26
+Planning Time: 0.528 ms
+Trigger for constraint learner_achievements_learner_id_fkey: time=199.343 calls=79757
+Trigger for constraint learner_achievements_achievement_id_fkey: time=132.026 calls=79757
+Execution Time: 881.281 ms

@@ -1,0 +1,198 @@
+=== R17 run 1 ===
+Sort  (cost=28355.51..28355.52 rows=3 width=46) (actual time=65.422..66.403 rows=3.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE lesson_attempts.is_perfect))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=22 read=11232
+  ->  Finalize GroupAggregate  (cost=28354.55..28355.49 rows=3 width=46) (actual time=65.415..66.397 rows=3.00 loops=1)
+        Group Key: lesson_attempts.device
+        Buffers: shared hit=19 read=11232
+        ->  Gather Merge  (cost=28354.55..28355.37 rows=7 width=22) (actual time=65.405..66.389 rows=9.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=19 read=11232
+              ->  Sort  (cost=27354.53..27354.54 rows=3 width=22) (actual time=63.250..63.252 rows=3.00 loops=3)
+                    Sort Key: lesson_attempts.device
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=19 read=11232
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=27354.48..27354.51 rows=3 width=22) (actual time=63.233..63.235 rows=3.00 loops=3)
+                          Group Key: lesson_attempts.device
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=3 read=11232
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..24044.75 rows=441297 width=7) (actual time=0.061..38.175 rows=352955.33 loops=3)
+                                Buffers: shared hit=3 read=11232
+                                ->  Seq Scan on lesson_attempts_202607 lesson_attempts_7  (cost=0.00..0.00 rows=1 width=33) (actual time=0.021..0.021 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202608 lesson_attempts_8  (cost=0.00..0.00 rows=1 width=33) (actual time=0.021..0.021 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202609 lesson_attempts_9  (cost=0.00..0.00 rows=1 width=33) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202610 lesson_attempts_10  (cost=0.00..0.00 rows=1 width=33) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202611 lesson_attempts_11  (cost=0.00..0.00 rows=1 width=33) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202612 lesson_attempts_12  (cost=0.00..0.00 rows=1 width=33) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Parallel Seq Scan on lesson_attempts_202605 lesson_attempts_5  (cost=0.00..3765.28 rows=107515 width=7) (actual time=0.030..13.709 rows=182775.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24430
+                                      Buffers: shared hit=1 read=1936
+                                ->  Parallel Seq Scan on lesson_attempts_202601 lesson_attempts_1  (cost=0.00..3714.49 rows=105368 width=7) (actual time=0.030..13.373 rows=179777.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24619
+                                      Buffers: shared hit=1 read=1910
+                                ->  Parallel Seq Scan on lesson_attempts_202603 lesson_attempts_3  (cost=0.00..3714.49 rows=105781 width=7) (actual time=0.063..6.648 rows=89981.00 loops=2)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 12216
+                                      Buffers: shared read=1911
+                                ->  Parallel Seq Scan on lesson_attempts_202606 lesson_attempts_6  (cost=0.00..3691.45 rows=105826 width=7) (actual time=0.030..6.623 rows=89732.50 loops=2)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 11840
+                                      Buffers: shared read=1899
+                                ->  Parallel Seq Scan on lesson_attempts_202604 lesson_attempts_4  (cost=0.00..3597.63 rows=102818 width=7) (actual time=0.015..13.337 rows=174342.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 23609
+                                      Buffers: shared read=1851
+                                ->  Parallel Seq Scan on lesson_attempts_202602 lesson_attempts_2  (cost=0.00..3354.96 rows=95692 width=7) (actual time=0.009..12.548 rows=162545.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 22070
+                                      Buffers: shared hit=1 read=1725
+Planning:
+  Buffers: shared hit=2327 read=197 dirtied=10
+Planning Time: 6.315 ms
+Execution Time: 66.459 ms
+=== R17 run 2 ===
+Sort  (cost=28355.51..28355.52 rows=3 width=46) (actual time=65.289..66.545 rows=3.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE lesson_attempts.is_perfect))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=2808 read=8446
+  ->  Finalize GroupAggregate  (cost=28354.55..28355.49 rows=3 width=46) (actual time=65.281..66.539 rows=3.00 loops=1)
+        Group Key: lesson_attempts.device
+        Buffers: shared hit=2805 read=8446
+        ->  Gather Merge  (cost=28354.55..28355.37 rows=7 width=22) (actual time=65.272..66.529 rows=9.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=2805 read=8446
+              ->  Sort  (cost=27354.53..27354.54 rows=3 width=22) (actual time=63.761..63.763 rows=3.00 loops=3)
+                    Sort Key: lesson_attempts.device
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=2805 read=8446
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=27354.48..27354.51 rows=3 width=22) (actual time=63.741..63.742 rows=3.00 loops=3)
+                          Group Key: lesson_attempts.device
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=2789 read=8446
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..24044.75 rows=441297 width=7) (actual time=0.055..38.468 rows=352955.33 loops=3)
+                                Buffers: shared hit=2789 read=8446
+                                ->  Seq Scan on lesson_attempts_202607 lesson_attempts_7  (cost=0.00..0.00 rows=1 width=33) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202608 lesson_attempts_8  (cost=0.00..0.00 rows=1 width=33) (actual time=0.020..0.020 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202609 lesson_attempts_9  (cost=0.00..0.00 rows=1 width=33) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202610 lesson_attempts_10  (cost=0.00..0.00 rows=1 width=33) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202611 lesson_attempts_11  (cost=0.00..0.00 rows=1 width=33) (actual time=0.015..0.015 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202612 lesson_attempts_12  (cost=0.00..0.00 rows=1 width=33) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Parallel Seq Scan on lesson_attempts_202605 lesson_attempts_5  (cost=0.00..3765.28 rows=107515 width=7) (actual time=0.025..13.872 rows=182775.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24430
+                                      Buffers: shared hit=1 read=1936
+                                ->  Parallel Seq Scan on lesson_attempts_202601 lesson_attempts_1  (cost=0.00..3714.49 rows=105368 width=7) (actual time=0.025..13.301 rows=179777.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24619
+                                      Buffers: shared hit=1 read=1910
+                                ->  Parallel Seq Scan on lesson_attempts_202603 lesson_attempts_3  (cost=0.00..3714.49 rows=105781 width=7) (actual time=0.036..4.826 rows=59987.33 loops=3)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 8144
+                                      Buffers: shared hit=1000 read=911
+                                ->  Parallel Seq Scan on lesson_attempts_202606 lesson_attempts_6  (cost=0.00..3691.45 rows=105826 width=7) (actual time=0.027..6.556 rows=89732.50 loops=2)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 11840
+                                      Buffers: shared hit=1052 read=847
+                                ->  Parallel Seq Scan on lesson_attempts_202604 lesson_attempts_4  (cost=0.00..3597.63 rows=102818 width=7) (actual time=0.006..13.237 rows=174342.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 23609
+                                      Buffers: shared hit=733 read=1118
+                                ->  Parallel Seq Scan on lesson_attempts_202602 lesson_attempts_2  (cost=0.00..3354.96 rows=95692 width=7) (actual time=0.007..12.359 rows=162545.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 22070
+                                      Buffers: shared hit=2 read=1724
+Planning:
+  Buffers: shared hit=2360 read=128
+Planning Time: 3.277 ms
+Execution Time: 66.594 ms
+=== R17 run 3 ===
+Sort  (cost=28355.51..28355.52 rows=3 width=46) (actual time=78.658..79.903 rows=3.00 loops=1)
+  Sort Key: (round(((100.0 * (count(*) FILTER (WHERE lesson_attempts.is_perfect))::numeric) / (count(*))::numeric), 2)) DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=11254
+  ->  Finalize GroupAggregate  (cost=28354.55..28355.49 rows=3 width=46) (actual time=78.643..79.892 rows=3.00 loops=1)
+        Group Key: lesson_attempts.device
+        Buffers: shared hit=11251
+        ->  Gather Merge  (cost=28354.55..28355.37 rows=7 width=22) (actual time=78.625..79.874 rows=9.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=11251
+              ->  Sort  (cost=27354.53..27354.54 rows=3 width=22) (actual time=76.029..76.036 rows=3.00 loops=3)
+                    Sort Key: lesson_attempts.device
+                    Sort Method: quicksort  Memory: 25kB
+                    Buffers: shared hit=11251
+                    Worker 0:  Sort Method: quicksort  Memory: 25kB
+                    Worker 1:  Sort Method: quicksort  Memory: 25kB
+                    ->  Partial HashAggregate  (cost=27354.48..27354.51 rows=3 width=22) (actual time=76.001..76.008 rows=3.00 loops=3)
+                          Group Key: lesson_attempts.device
+                          Batches: 1  Memory Usage: 32kB
+                          Buffers: shared hit=11235
+                          Worker 0:  Batches: 1  Memory Usage: 32kB
+                          Worker 1:  Batches: 1  Memory Usage: 32kB
+                          ->  Parallel Append  (cost=0.00..24044.75 rows=441297 width=7) (actual time=0.048..46.048 rows=352955.33 loops=3)
+                                Buffers: shared hit=11235
+                                ->  Seq Scan on lesson_attempts_202607 lesson_attempts_7  (cost=0.00..0.00 rows=1 width=33) (actual time=0.023..0.023 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202608 lesson_attempts_8  (cost=0.00..0.00 rows=1 width=33) (actual time=0.019..0.019 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202609 lesson_attempts_9  (cost=0.00..0.00 rows=1 width=33) (actual time=0.017..0.017 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202610 lesson_attempts_10  (cost=0.00..0.00 rows=1 width=33) (actual time=0.018..0.018 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202611 lesson_attempts_11  (cost=0.00..0.00 rows=1 width=33) (actual time=0.027..0.027 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Seq Scan on lesson_attempts_202612 lesson_attempts_12  (cost=0.00..0.00 rows=1 width=33) (actual time=0.020..0.020 rows=0.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                ->  Parallel Seq Scan on lesson_attempts_202605 lesson_attempts_5  (cost=0.00..3765.28 rows=107515 width=7) (actual time=0.005..15.521 rows=182775.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24430
+                                      Buffers: shared hit=1937
+                                ->  Parallel Seq Scan on lesson_attempts_202601 lesson_attempts_1  (cost=0.00..3714.49 rows=105368 width=7) (actual time=0.010..22.098 rows=179777.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 24619
+                                      Buffers: shared hit=1911
+                                ->  Parallel Seq Scan on lesson_attempts_202603 lesson_attempts_3  (cost=0.00..3714.49 rows=105781 width=7) (actual time=0.008..5.660 rows=59987.33 loops=3)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 8144
+                                      Buffers: shared hit=1911
+                                ->  Parallel Seq Scan on lesson_attempts_202606 lesson_attempts_6  (cost=0.00..3691.45 rows=105826 width=7) (actual time=0.007..9.269 rows=89732.50 loops=2)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 11840
+                                      Buffers: shared hit=1899
+                                ->  Parallel Seq Scan on lesson_attempts_202604 lesson_attempts_4  (cost=0.00..3597.63 rows=102818 width=7) (actual time=0.005..13.144 rows=174342.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 23609
+                                      Buffers: shared hit=1851
+                                ->  Parallel Seq Scan on lesson_attempts_202602 lesson_attempts_2  (cost=0.00..3354.96 rows=95692 width=7) (actual time=0.003..13.518 rows=162545.00 loops=1)
+                                      Filter: ((completed_at IS NOT NULL) AND (started_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (started_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone))
+                                      Rows Removed by Filter: 22070
+                                      Buffers: shared hit=1726
+Planning:
+  Buffers: shared hit=2488
+Planning Time: 3.506 ms
+Execution Time: 79.991 ms
